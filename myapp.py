@@ -11,7 +11,7 @@ from models import *
 
 class DataMappingApp:
     def __init__(self):
-        self.client = OpenAI(api_key=st.secrets(key))
+        self.client = OpenAI(api_key=st.secrets(OPENAI_KEY))
 
     def setup_session_state(self):
         if 'messages' not in st.session_state:
