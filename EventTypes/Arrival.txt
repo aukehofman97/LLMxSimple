@@ -1,0 +1,35 @@
+Arrival events follow a fixed structure in FEDeRATED. You are instructed to always follow this structure.
+It contains the following data fields:
+- UUID (event)
+- UUID (Location) always goes accompanied by the type of event, in this case arrival, so ARR, under event
+- UUID (BusinessTransaction) under event
+- Actual datetime under event
+- Milestone, value is always 'start', under event
+- function under location
+- locationCode under location
+- ExternalReference under BusinessTransaction
+
+IMPORTANT: the structure down below is an example. You must use this structure in terms of classes and fields, but do not take over the data.
+So, you are to extract the "locationCode" from the uploaded file, and not make the value "62105"
+
+
+{
+	"Event":[
+		{
+      		"Event_UUID": "genid-48391028-0",
+      		"Actual_Time": "2024-07-08T14:22:00",
+      		"milestone": "start",
+      		"involvesLocation": "ARR","genid-48391028-1",
+		"involvesBusinessTransaction: "genid-48391028-2" }],
+	"Location": [
+		{	
+		"UUID":"genid-48391028-1",
+		"function": "Terminal"
+		"locationCode": "12345",
+		}],
+	"BusinessTransaction": [ {
+		"UUID":"genid-48391028-2",
+		"externalReference":222	
+		}]
+			
+}
