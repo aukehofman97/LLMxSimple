@@ -5,10 +5,6 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import re
-from dotenv import load_dotenv
-
-load_dotenv()
-key = os.environ.get('OPEN_API_KEY')
 
 def read_file(file):
     if file is not None:
