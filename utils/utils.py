@@ -341,7 +341,7 @@ def process_assistance_option(assistance_option):
                             else:
                                 st.error("Unable to split field value into two parts. Please check the split character.")
 
-def extract_event_type_from_response(self, response):
+def extract_event_type_from_response(response):
     # Simple function to extract event type from the response string
     # You should adjust this based on the actual format of the API response
     response_lower = response.lower()
@@ -352,7 +352,7 @@ def extract_event_type_from_response(self, response):
     else:
         return None  # Return None if the event type cannot be determined
 
-def process_event_type(self, event_type, uploaded_file_content):
+def process_event_type(event_type, uploaded_file_content):
     event_type_lower = event_type.lower()
     if "load" in event_type_lower:
         file_path = os.path.join('EventTypes', 'Load.txt')
