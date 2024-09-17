@@ -161,44 +161,43 @@ class DataMappingApp:
 
                     if st.button("Further Assistance"):
                         st.session_state['further_assistance_requested'] = True
-            
-            # Adding radio button for further assistance
-            assistance_option = st.radio(
-                "Select one option for further assistance:",
-                ["Remove", "Update", "Add", "Transform", "Calculate", "Merge", "Split"]
-            )
 
-
-            # Initialize a session state for storing updates if not already initialized
-            if 'new_output_json' not in st.session_state:
-                st.session_state['new_output_json'] = validated_json.copy()  # Start with a copy of the validated JSON
-
-            #selected_uuid = None  # 'selected_uuid' is defined but not used yet
-
-            process_assistance_option(assistance_option)
-
-            # Accept updates and allow download
-            if st.button("Accept Updates"):
-                # Finalize the updates and display download button
-                st.write("### New Output (JSON)")
-                    
-                st.download_button(
-                    label='Download New Output (JSON)',
-                    data=json.dumps(st.session_state['new_output_json'], indent=4),  # Convert dict to a formatted JSON string
-                    file_name='new_output.json',
-                    mime='application/json'
+            # Move the following code inside the if block
+            if st.session_state['further_assistance_requested']:
+                # Adding radio button for further assistance
+                assistance_option = st.radio(
+                    "Select one option for further assistance:",
+                    ["Remove", "Update", "Add", "Transform", "Calculate", "Merge", "Split"]
                 )
-                save_user_info(
-                    event,
-                    st.session_state['uploaded_data'],
-                    st.session_state['converted_data'],
-                    final_converted_data=st.session_state['new_output_json'],  # Save the updated JSON output
-                    adaptation_option={
-                        "option": assistance_option,  # Adaptation option selected by the user
-                            #"selected_field": selected_field,  # The field that was updated
-                            #"new_value": new_value  # The new value set for the field
-                    }                  
-                )
+
+                # Initialize a session state for storing updates if not already initialized
+                if 'new_output_json' not in st.session_state:
+                    st.session_state['new_output_json'] = validated_json.copy()  # Start with a copy of the validated JSON
+
+                # Process the selected assistance option
+                process_assistance_option(assistance_option)
+
+                # Accept updates and allow download
+                if st.button("Accept Updates"):
+                    # Finalize the updates and display download button
+                    st.write("### New Output (JSON)")
+                        
+                    st.download_button(
+                        label='Download New Output (JSON)',
+                        data=json.dumps(st.session_state['new_output_json'], indent=4),  # Convert dict to a formatted JSON string
+                        file_name='new_output.json',
+                        mime='application/json'
+                    )
+                    save_user_info(
+                        event,
+                        st.session_state['uploaded_data'],
+                        st.session_state['converted_data'],
+                        final_converted_data=st.session_state['new_output_json'],  # Save the updated JSON output
+                        adaptation_option={
+                            "option": assistance_option,  # Adaptation option selected by the user
+                            # Add other relevant information if needed
+                        }                  
+                    )
     def tab_two(self):
         self.setup_session_state()
 
