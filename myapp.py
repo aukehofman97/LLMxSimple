@@ -262,11 +262,11 @@ class DataMappingApp:
                 if 'api_response_correct' in st.session_state:
                     if st.session_state['api_response_correct']:
                         # User clicked "Correct"
-                        event_type = self.extract_event_type_from_response(response)
+                        event_type = extract_event_type_from_response(response)
 
                         if event_type:
                             # Proceed with the translation
-                            self.process_event_type(event_type, uploaded_file_content)
+                            process_event_type(event_type, uploaded_file_content)
                             st.session_state['event_type_confirmed'] = True
                         else:
                             st.error("Could not determine the event type from the API response. Please click 'Incorrect' and input the event type manually.")
@@ -276,7 +276,7 @@ class DataMappingApp:
                         if user_event_type:
                             event_type = user_event_type.strip().lower() + " event"
                             # Proceed with the translation
-                            self.process_event_type(event_type, uploaded_file_content)
+                            process_event_type(event_type, uploaded_file_content)
                             st.session_state['event_type_confirmed'] = True
 
             # If the event type is confirmed, display the validated data and options
