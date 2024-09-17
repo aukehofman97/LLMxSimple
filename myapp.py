@@ -239,14 +239,15 @@ class DataMappingApp:
                 # Call the OpenAI API
                 try:
                     response = get_openai_response(self.client, temp_messages)
-                    # Store the response in session state
                     st.session_state['api_response'] = response
                 except Exception as e:
                     st.error(f"An error occurred while calling the OpenAI API: {e}")
 
-            # Display the API response if it exists and event type is not yet confirmed
-            if 'api_response' in st.session_state and not st.session_state.get('event_type_confirmed', False):
-                response = st.session_state['api_response']
+            # Retrieve 'response' from session state
+            response = st.session_state.get('api_response', None)
+
+            # Proceed if 'response' exists and event type is not yet confirmed
+            if response and not st.session_state.get('event_type_confirmed', False):
                 st.text_area("API Response:", response, height=150, key="tab3_api_response")
 
                 # Show "Correct" and "Incorrect" buttons
@@ -261,22 +262,17 @@ class DataMappingApp:
                 # Handle the user's choice
                 if 'api_response_correct' in st.session_state:
                     if st.session_state['api_response_correct']:
-                        # User clicked "Correct"
                         event_type = extract_event_type_from_response(response)
-
                         if event_type:
-                            # Proceed with the translation
-                            process_event_type(event_type, uploaded_file_content)
+                            process_event_type(event_type, uploaded_file_content, self.client)
                             st.session_state['event_type_confirmed'] = True
                         else:
                             st.error("Could not determine the event type from the API response. Please click 'Incorrect' and input the event type manually.")
                     else:
-                        # User clicked "Incorrect"
                         user_event_type = st.text_input("Please input the correct event type (e.g., 'load' or 'arrival'):", key="tab3_user_event_type")
                         if user_event_type:
                             event_type = user_event_type.strip().lower() + " event"
-                            # Proceed with the translation
-                            process_event_type(event_type, uploaded_file_content)
+                            process_event_type(event_type, uploaded_file_content, self.client)
                             st.session_state['event_type_confirmed'] = True
 
             # If the event type is confirmed, display the validated data and options
