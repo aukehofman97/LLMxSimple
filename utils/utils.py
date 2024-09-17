@@ -353,7 +353,7 @@ def extract_event_type_from_response(response):
     else:
         return None  # Return None if the event type cannot be determined
 
-def process_event_type(event_type, uploaded_file_content):
+def process_event_type(event_type, uploaded_file_content, client):
     event_type_lower = event_type.lower()
     if "load" in event_type_lower:
         file_path = os.path.join('EventTypes', 'Load.txt')
