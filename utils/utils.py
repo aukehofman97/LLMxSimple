@@ -6,6 +6,7 @@ import pandas as pd
 from datetime import datetime
 import re
 from models import *
+from myapp import *
 
 def read_file(file):
     if file is not None:

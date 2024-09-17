@@ -9,10 +9,12 @@ import os
 from utils.utils import *
 from models import *
 
+client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
+
 class DataMappingApp:
     def __init__(self):
-        self.client = OpenAI(api_key=st.secrets["OPEN_API_KEY"])
-
+        pass
+    
     def setup_session_state(self):
         if 'messages' not in st.session_state:
             st.session_state['messages'] = [
@@ -107,7 +109,7 @@ class DataMappingApp:
                     st.error("File prompt.txt not found. Please make sure the file exists in the correct path.")
                     return
                 
-                response = get_openai_response(self.client, temp_messages)
+                response = get_openai_response(client, temp_messages)
                 
                 converted_data = response
                 
@@ -238,7 +240,7 @@ class DataMappingApp:
 
                 # Call the OpenAI API
                 try:
-                    response = get_openai_response(self.client, temp_messages)
+                    response = get_openai_response(client, temp_messages)
                     st.session_state['api_response'] = response
                 except Exception as e:
                     st.error(f"An error occurred while calling the OpenAI API: {e}")
@@ -264,7 +266,7 @@ class DataMappingApp:
                     if st.session_state['api_response_correct']:
                         event_type = extract_event_type_from_response(response)
                         if event_type:
-                            process_event_type(event_type, uploaded_file_content, self.client)
+                            process_event_type(event_type, uploaded_file_content, client)
                             st.session_state['event_type_confirmed'] = True
                         else:
                             st.error("Could not determine the event type from the API response. Please click 'Incorrect' and input the event type manually.")
@@ -272,7 +274,7 @@ class DataMappingApp:
                         user_event_type = st.text_input("Please input the correct event type (e.g., 'load' or 'arrival'):", key="tab3_user_event_type")
                         if user_event_type:
                             event_type = user_event_type.strip().lower() + " event"
-                            process_event_type(event_type, uploaded_file_content, self.client)
+                            process_event_type(event_type, uploaded_file_content, client)
                             st.session_state['event_type_confirmed'] = True
 
             # If the event type is confirmed, display the validated data and options
