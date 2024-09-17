@@ -224,7 +224,7 @@ class DataMappingApp:
             # Add a button called "Detect Type"
             if st.button("Detect Type", key="tab3_detect_type_button"):
                 # Prepare the OpenAI API call
-                placeholder_text = "Please detect the event type of the following data."  # Replace with your actual prompt
+                placeholder_text = "Please detect the event type of the following data. This means, if you find load in the eventType, you output load event. If you find arrival in the eventType, you output arrival event."  # Replace with your actual prompt
 
                 # Prepare the messages for the OpenAI API
                 temp_messages = st.session_state['messages'].copy()
