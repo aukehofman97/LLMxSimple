@@ -341,3 +341,73 @@ def process_assistance_option(assistance_option):
                             else:
                                 st.error("Unable to split field value into two parts. Please check the split character.")
 
+def extract_event_type_from_response(self, response):
+    # Simple function to extract event type from the response string
+    # You should adjust this based on the actual format of the API response
+    response_lower = response.lower()
+    if "load event" in response_lower or "load" in response_lower:
+        return "Load"
+    elif "arrival event" in response_lower or "arrival" in response_lower:
+        return "Arrival"
+    else:
+        return None  # Return None if the event type cannot be determined
+
+def process_event_type(self, event_type, uploaded_file_content):
+    event_type_lower = event_type.lower()
+    if "load" in event_type_lower:
+        file_path = os.path.join('EventTypes', 'Load.txt')
+        EventData = LoadEventData
+    elif "arrival" in event_type_lower:
+        file_path = os.path.join('EventTypes', 'Arrival.txt')
+        EventData = ArrivalEventData
+    else:
+        st.error(f"Unknown event type: {event_type}. Please input 'load' or 'arrival'.")
+        return
+
+    # Save the event type in session state
+    st.session_state['event_type'] = event_type
+
+    # Read the content of the event type file
+    try:
+        with open(file_path, 'r') as file:
+            file_content = read_file(file)
+            # Add the file content to the messages
+            st.session_state['messages'].append({"role": "system", "content": f"Here is some additional context from the {event_type} file:\n{file_content}"})
+    except FileNotFoundError:
+        st.error(f"File {file_path} not found. Please make sure the file exists in the correct path.")
+        return
+
+    # Add the uploaded data to the messages
+    if isinstance(uploaded_file_content, pd.DataFrame):
+        st.session_state['messages'].append({"role": "user", "content": uploaded_file_content.to_string(index=False)})
+    else:
+        st.session_state['messages'].append({"role": "user", "content": str(uploaded_file_content)})
+
+    # Read the prompt from 'prompt.txt'
+    try:
+        with open('prompt.txt', 'r') as prompt_file:
+            prompt_content = prompt_file.read()
+            temp_messages = st.session_state['messages'] + [{"role": "user", "content": prompt_content}]
+    except FileNotFoundError:
+        st.error("File prompt.txt not found. Please make sure the file exists in the correct path.")
+        return
+
+    # Call the OpenAI API for the transformation
+    response = get_openai_response(self.client, temp_messages)
+
+    converted_data = response
+
+    st.session_state['messages'].append({"role": "assistant", "content": response})
+    st.session_state['converted_data'] = converted_data
+
+    # Parse and validate the response
+    try:
+        parsed_data = json.loads(converted_data)
+        event_data = EventData(**parsed_data)
+        validated_json_str = event_data.model_dump_json(indent=4)
+        st.session_state['validated_json'] = validated_json_str
+        # Save the validated data to a file
+        with open('validated_data.json', 'w') as f:
+            f.write(validated_json_str)
+    except Exception as e:
+        st.error(f"An error occurred while parsing and validating the data: {e}")
