@@ -208,96 +208,96 @@ class DataMappingApp:
     def tab_three(self):
         self.setup_session_state()
 
-    st.title('Event Type Detector and Transformer')
+        st.title('Event Type Detector and Transformer')
 
-    # Allow for JSON file upload as in tab 1
-    uploaded_file = st.file_uploader("Upload JSON file", type=["json"], key="tab3_file_uploader")
+        # Allow for JSON file upload as in tab 1
+        uploaded_file = st.file_uploader("Upload JSON file", type=["json"], key="tab3_file_uploader")
 
-    if uploaded_file is not None:
-        # Read the file using a function from utils (e.g., read_file)
-        uploaded_file_content = read_file(uploaded_file)
-        st.session_state['uploaded_data'] = uploaded_file_content
+        if uploaded_file is not None:
+            # Read the file using a function from utils (e.g., read_file)
+            uploaded_file_content = read_file(uploaded_file)
+            st.session_state['uploaded_data'] = uploaded_file_content
 
-        # Display the uploaded data
-        st.text_area("Uploaded Data:", str(uploaded_file_content), height=300, key="tab3_uploaded_data", disabled=True)
+            # Display the uploaded data
+            st.text_area("Uploaded Data:", str(uploaded_file_content), height=300, key="tab3_uploaded_data", disabled=True)
 
-        # Add a button called "Detect Type"
-        if st.button("Detect Type", key="tab3_detect_type_button"):
-            # Prepare the OpenAI API call
-            placeholder_text = "Please detect the event type of the following data."  # Replace with your actual prompt
+            # Add a button called "Detect Type"
+            if st.button("Detect Type", key="tab3_detect_type_button"):
+                # Prepare the OpenAI API call
+                placeholder_text = "Please detect the event type of the following data."  # Replace with your actual prompt
 
-            # Prepare the messages for the OpenAI API
-            temp_messages = st.session_state['messages'].copy()
-            temp_messages.append({"role": "user", "content": placeholder_text})
+                # Prepare the messages for the OpenAI API
+                temp_messages = st.session_state['messages'].copy()
+                temp_messages.append({"role": "user", "content": placeholder_text})
 
-            # Add the uploaded data to the messages
-            if isinstance(uploaded_file_content, pd.DataFrame):
-                temp_messages.append({"role": "user", "content": uploaded_file_content.to_string(index=False)})
-            else:
-                temp_messages.append({"role": "user", "content": str(uploaded_file_content)})
-
-            # Call the OpenAI API
-            try:
-                response = get_openai_response(self.client, temp_messages)
-                # Store the response in session state
-                st.session_state['api_response'] = response
-            except Exception as e:
-                st.error(f"An error occurred while calling the OpenAI API: {e}")
-
-        # Display the API response if it exists and event type is not yet confirmed
-        if 'api_response' in st.session_state and not st.session_state.get('event_type_confirmed', False):
-            response = st.session_state['api_response']
-            st.text_area("API Response:", response, height=150, key="tab3_api_response")
-
-            # Show "Correct" and "Incorrect" buttons
-            col1, col2 = st.columns(2)
-            with col1:
-                if st.button("Correct", key="tab3_correct_button"):
-                    st.session_state['api_response_correct'] = True
-            with col2:
-                if st.button("Incorrect", key="tab3_incorrect_button"):
-                    st.session_state['api_response_correct'] = False
-
-            # Handle the user's choice
-            if 'api_response_correct' in st.session_state:
-                if st.session_state['api_response_correct']:
-                    # User clicked "Correct"
-                    event_type = self.extract_event_type_from_response(response)
-
-                    if event_type:
-                        # Proceed with the translation
-                        self.process_event_type(event_type, uploaded_file_content)
-                        st.session_state['event_type_confirmed'] = True
-                    else:
-                        st.error("Could not determine the event type from the API response. Please click 'Incorrect' and input the event type manually.")
+                # Add the uploaded data to the messages
+                if isinstance(uploaded_file_content, pd.DataFrame):
+                    temp_messages.append({"role": "user", "content": uploaded_file_content.to_string(index=False)})
                 else:
-                    # User clicked "Incorrect"
-                    user_event_type = st.text_input("Please input the correct event type (e.g., 'load' or 'arrival'):", key="tab3_user_event_type")
-                    if user_event_type:
-                        event_type = user_event_type.strip().lower() + " event"
-                        # Proceed with the translation
-                        self.process_event_type(event_type, uploaded_file_content)
-                        st.session_state['event_type_confirmed'] = True
+                    temp_messages.append({"role": "user", "content": str(uploaded_file_content)})
 
-        # If the event type is confirmed, display the validated data and options
-        if st.session_state.get('event_type_confirmed', False):
-            # Display the validated data
-            if 'validated_json' in st.session_state:
-                st.text_area("Validated Data:", st.session_state['validated_json'], height=300, key="tab3_validated_data")
+                # Call the OpenAI API
+                try:
+                    response = get_openai_response(self.client, temp_messages)
+                    # Store the response in session state
+                    st.session_state['api_response'] = response
+                except Exception as e:
+                    st.error(f"An error occurred while calling the OpenAI API: {e}")
 
-            # Provide options to accept or request further assistance
-            col1, col2 = st.columns([1, 1])
-            with col1:
-                if st.button("Accept", key="tab3_accept_button"):
-                    st.success("Data has been written to validated_data.json.")
-                    with open('validated_data.json', 'rb') as f:
-                        st.download_button('Download JSON', f, file_name='validated_data.json', key="tab3_download_json")
-                    # Save user info if needed
-                    save_user_info(
-                        st.session_state.get('event_type', ''),
-                        st.session_state['uploaded_data'],
-                        st.session_state['validated_json']
-                    )
-                if st.button("Further Assistance", key="tab3_further_assistance_button"):
-                    st.session_state['further_assistance_requested'] = True
-                    # Implement further assistance as needed
+            # Display the API response if it exists and event type is not yet confirmed
+            if 'api_response' in st.session_state and not st.session_state.get('event_type_confirmed', False):
+                response = st.session_state['api_response']
+                st.text_area("API Response:", response, height=150, key="tab3_api_response")
+
+                # Show "Correct" and "Incorrect" buttons
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("Correct", key="tab3_correct_button"):
+                        st.session_state['api_response_correct'] = True
+                with col2:
+                    if st.button("Incorrect", key="tab3_incorrect_button"):
+                        st.session_state['api_response_correct'] = False
+
+                # Handle the user's choice
+                if 'api_response_correct' in st.session_state:
+                    if st.session_state['api_response_correct']:
+                        # User clicked "Correct"
+                        event_type = self.extract_event_type_from_response(response)
+
+                        if event_type:
+                            # Proceed with the translation
+                            self.process_event_type(event_type, uploaded_file_content)
+                            st.session_state['event_type_confirmed'] = True
+                        else:
+                            st.error("Could not determine the event type from the API response. Please click 'Incorrect' and input the event type manually.")
+                    else:
+                        # User clicked "Incorrect"
+                        user_event_type = st.text_input("Please input the correct event type (e.g., 'load' or 'arrival'):", key="tab3_user_event_type")
+                        if user_event_type:
+                            event_type = user_event_type.strip().lower() + " event"
+                            # Proceed with the translation
+                            self.process_event_type(event_type, uploaded_file_content)
+                            st.session_state['event_type_confirmed'] = True
+
+            # If the event type is confirmed, display the validated data and options
+            if st.session_state.get('event_type_confirmed', False):
+                # Display the validated data
+                if 'validated_json' in st.session_state:
+                    st.text_area("Validated Data:", st.session_state['validated_json'], height=300, key="tab3_validated_data")
+
+                # Provide options to accept or request further assistance
+                col1, col2 = st.columns([1, 1])
+                with col1:
+                    if st.button("Accept", key="tab3_accept_button"):
+                        st.success("Data has been written to validated_data.json.")
+                        with open('validated_data.json', 'rb') as f:
+                            st.download_button('Download JSON', f, file_name='validated_data.json', key="tab3_download_json")
+                        # Save user info if needed
+                        save_user_info(
+                            st.session_state.get('event_type', ''),
+                            st.session_state['uploaded_data'],
+                            st.session_state['validated_json']
+                        )
+                    if st.button("Further Assistance", key="tab3_further_assistance_button"):
+                        st.session_state['further_assistance_requested'] = True
+                        # Implement further assistance as needed
