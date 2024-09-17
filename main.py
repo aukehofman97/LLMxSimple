@@ -15,7 +15,7 @@ def main():
     with tab2:
         app.tab_two()
     with tab3:
-        app.tab_three
+        app.tab_three()
 
 if __name__ == "__main__":
     main()
