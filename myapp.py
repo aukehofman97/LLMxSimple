@@ -224,7 +224,7 @@ class DataMappingApp:
             # Add a button called "Detect Type"
             if st.button("Detect Type", key="tab3_detect_type_button"):
                 # Prepare the OpenAI API call
-                placeholder_text = "Placeholder text"  # Replace this with your custom text when ready
+                placeholder_text = "Detect the event type in the uploaded file. Give as output for now only the detected event type. Use this simple rule: the JSON file contains a line called eventType. If the value contains the word LOAD, give as output load event. If the value of eventType contains the word ARRIVAL, output arrival event. Do not transform any data yet."  # Replace this with your custom text when ready
 
                 # Prepare the messages for the OpenAI API
                 temp_messages = st.session_state['messages'].copy()
