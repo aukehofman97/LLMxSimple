@@ -394,7 +394,7 @@ def process_event_type(event_type, uploaded_file_content):
         return
 
     # Call the OpenAI API for the transformation
-    response = get_openai_response(self.client, temp_messages)
+    response = get_openai_response(client, temp_messages)
 
     converted_data = response
 
