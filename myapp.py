@@ -300,6 +300,8 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
+        self.setup_session_state()
+
         st.title('Ontology Explorer')
 
     # Allow users to upload a .ttl file
