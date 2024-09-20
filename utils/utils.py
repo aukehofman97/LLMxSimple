@@ -5,6 +5,8 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import re
+from rdflib import Graph
+from rdflib.namespace import RDF, RDFS, OWL
 from models import *
 from myapp import *
 
@@ -413,3 +415,53 @@ def process_event_type(event_type, uploaded_file_content, client):
             f.write(validated_json_str)
     except Exception as e:
         st.error(f"An error occurred while parsing and validating the data: {e}")
+
+def ttl_parser(ttl_content):
+    """
+    Parses TTL content and extracts classes, relationships, and instances.
+
+    Args:
+        ttl_content (str): The content of the TTL file as a string.
+
+    Returns:
+        tuple: A tuple containing three lists: classes_list, relationships_list, instances_list.
+    """
+    # Initialize a Graph
+    g = Graph()
+
+    # Parse the TTL content
+    g.parse(data=ttl_content, format="turtle")
+
+    # Sets to store classes, relationships (properties), and instances
+    classes = set()
+    relationships = set()
+    instances = set()
+
+    # Collect all classes
+    for s, p, o in g.triples((None, RDF.type, RDFS.Class)):
+        classes.add(s)
+    for s, p, o in g.triples((None, RDF.type, OWL.Class)):
+        classes.add(s)
+    # Note: Removed RDF.Class since it doesn't exist
+
+    # Collect all relationships (properties)
+    for s, p, o in g.triples((None, RDF.type, RDF.Property)):
+        relationships.add(s)
+    for s, p, o in g.triples((None, RDF.type, OWL.ObjectProperty)):
+        relationships.add(s)
+    for s, p, o in g.triples((None, RDF.type, OWL.DatatypeProperty)):
+        relationships.add(s)
+    for s, p, o in g.triples((None, RDF.type, OWL.AnnotationProperty)):
+        relationships.add(s)
+
+    # Collect all instances
+    for s, p, o in g.triples((None, RDF.type, None)):
+        if o in classes:
+            instances.add(s)
+
+    # Convert sets to sorted lists
+    classes_list = sorted(classes)
+    relationships_list = sorted(relationships)
+    instances_list = sorted(instances)
+
+    return classes_list, relationships_list, instances_list
