@@ -5,6 +5,7 @@ from openai import OpenAI
 import pandas as pd
 import json
 import os
+from rdflib import Graph, RDF, RDFS, OWL
 
 from utils.utils import *
 from models import *
