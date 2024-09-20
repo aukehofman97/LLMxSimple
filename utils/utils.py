@@ -433,7 +433,7 @@ def extract_local_name(uri):
         return uri_str.rsplit('/', 1)[-1]
     else:
         return uri_str  # Return the whole URI if no '#' or '/' is found
-    
+
 def ttl_parser(ttl_content):
     """
     Parses TTL content and extracts classes, relationships, and instances.
