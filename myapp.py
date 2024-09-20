@@ -301,8 +301,6 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
-        self.setup_session_state()
-
         st.title('Ontology Explorer')
 
         # Allow users to upload a .ttl file
@@ -310,7 +308,12 @@ class DataMappingApp:
 
         if uploaded_file is not None:
             # Read the file content
-            ttl_content = uploaded_file.getvalue().decode("utf-8")
+            ttl_content_bytes = uploaded_file.getvalue()
+            ttl_content = ttl_content_bytes.decode("utf-8")
+
+            # Display the TTL file content
+            st.subheader("TTL File Content:")
+            st.code(ttl_content, language='turtle')
 
             # Initialize a Graph
             g = Graph()
@@ -329,8 +332,7 @@ class DataMappingApp:
                     classes.add(s)
                 for s, p, o in g.triples((None, RDF.type, OWL.Class)):
                     classes.add(s)
-                for s, p, o in g.triples((None, RDF.type, RDF.Class)):
-                    classes.add(s)
+                # Note: Removed RDF.Class since it doesn't exist
 
                 # Collect all relationships (properties)
                 for s, p, o in g.triples((None, RDF.type, RDF.Property)):
@@ -354,16 +356,25 @@ class DataMappingApp:
 
                 # Display the results
                 st.subheader("Classes:")
-                for c in classes_list:
-                    st.write(c)
+                if classes_list:
+                    for c in classes_list:
+                        st.write(c)
+                else:
+                    st.write("No classes found.")
 
                 st.subheader("Relationships:")
-                for r in relationships_list:
-                    st.write(r)
+                if relationships_list:
+                    for r in relationships_list:
+                        st.write(r)
+                else:
+                    st.write("No relationships found.")
 
                 st.subheader("Instances:")
-                for i in instances_list:
-                    st.write(i)
+                if instances_list:
+                    for i in instances_list:
+                        st.write(i)
+                else:
+                    st.write("No instances found.")
 
             except Exception as e:
                 st.error(f"An error occurred while parsing the TTL file: {e}")
