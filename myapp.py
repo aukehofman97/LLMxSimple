@@ -315,44 +315,10 @@ class DataMappingApp:
             st.subheader("TTL File Content:")
             st.code(ttl_content, language='turtle')
 
-            # Initialize a Graph
-            g = Graph()
-
             # Parse the TTL content
             try:
-                g.parse(data=ttl_content, format="turtle")
-
-                # Sets to store classes, relationships (properties), and instances
-                classes = set()
-                relationships = set()
-                instances = set()
-
-                # Collect all classes
-                for s, p, o in g.triples((None, RDF.type, RDFS.Class)):
-                    classes.add(s)
-                for s, p, o in g.triples((None, RDF.type, OWL.Class)):
-                    classes.add(s)
-                # Note: Removed RDF.Class since it doesn't exist
-
-                # Collect all relationships (properties)
-                for s, p, o in g.triples((None, RDF.type, RDF.Property)):
-                    relationships.add(s)
-                for s, p, o in g.triples((None, RDF.type, OWL.ObjectProperty)):
-                    relationships.add(s)
-                for s, p, o in g.triples((None, RDF.type, OWL.DatatypeProperty)):
-                    relationships.add(s)
-                for s, p, o in g.triples((None, RDF.type, OWL.AnnotationProperty)):
-                    relationships.add(s)
-
-                # Collect all instances
-                for s, p, o in g.triples((None, RDF.type, None)):
-                    if o in classes:
-                        instances.add(s)
-
-                # Convert sets to sorted lists
-                classes_list = sorted(classes)
-                relationships_list = sorted(relationships)
-                instances_list = sorted(instances)
+                # Call the ttl_parser function
+                classes_list, relationships_list, instances_list = ttl_parser(ttl_content)
 
                 # Display the results
                 st.subheader("Classes:")
