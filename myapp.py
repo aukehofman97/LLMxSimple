@@ -299,3 +299,68 @@ class DataMappingApp:
                     if st.button("Further Assistance", key="tab3_further_assistance_button"):
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
+    def tab_four(self):
+        st.title('Ontology Explorer')
+
+    # Allow users to upload a .ttl file
+    uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
+
+    if uploaded_file is not None:
+        # Read the file content
+        ttl_content = uploaded_file.getvalue().decode("utf-8")
+
+        # Initialize a Graph
+        g = Graph()
+
+        # Parse the TTL content
+        try:
+            g.parse(data=ttl_content, format="turtle")
+
+            # Sets to store classes, relationships (properties), and instances
+            classes = set()
+            relationships = set()
+            instances = set()
+
+            # Collect all classes
+            for s, p, o in g.triples((None, RDF.type, RDFS.Class)):
+                classes.add(s)
+            for s, p, o in g.triples((None, RDF.type, OWL.Class)):
+                classes.add(s)
+            for s, p, o in g.triples((None, RDF.type, RDF.Class)):
+                classes.add(s)
+
+            # Collect all relationships (properties)
+            for s, p, o in g.triples((None, RDF.type, RDF.Property)):
+                relationships.add(s)
+            for s, p, o in g.triples((None, RDF.type, OWL.ObjectProperty)):
+                relationships.add(s)
+            for s, p, o in g.triples((None, RDF.type, OWL.DatatypeProperty)):
+                relationships.add(s)
+            for s, p, o in g.triples((None, RDF.type, OWL.AnnotationProperty)):
+                relationships.add(s)
+
+            # Collect all instances
+            for s, p, o in g.triples((None, RDF.type, None)):
+                if o in classes:
+                    instances.add(s)
+
+            # Convert sets to sorted lists
+            classes_list = sorted(classes)
+            relationships_list = sorted(relationships)
+            instances_list = sorted(instances)
+
+            # Display the results
+            st.subheader("Classes:")
+            for c in classes_list:
+                st.write(c)
+
+            st.subheader("Relationships:")
+            for r in relationships_list:
+                st.write(r)
+
+            st.subheader("Instances:")
+            for i in instances_list:
+                st.write(i)
+
+        except Exception as e:
+            st.error(f"An error occurred while parsing the TTL file: {e}")
