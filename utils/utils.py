@@ -415,7 +415,25 @@ def process_event_type(event_type, uploaded_file_content, client):
             f.write(validated_json_str)
     except Exception as e:
         st.error(f"An error occurred while parsing and validating the data: {e}")
+        
+def extract_local_name(uri):
+    """
+    Extracts the local name from a URI.
 
+    Args:
+        uri (str): The URI string.
+
+    Returns:
+        str: The local name extracted from the URI.
+    """
+    uri_str = str(uri)
+    if '#' in uri_str:
+        return uri_str.split('#')[-1]
+    elif '/' in uri_str:
+        return uri_str.rsplit('/', 1)[-1]
+    else:
+        return uri_str  # Return the whole URI if no '#' or '/' is found
+    
 def ttl_parser(ttl_content):
     """
     Parses TTL content and extracts classes, relationships, and instances.
@@ -437,27 +455,31 @@ def ttl_parser(ttl_content):
     relationships = set()
     instances = set()
 
-    # Collect all classes
+    # Collect all classes and their URIs
+    class_uris = set()
     for s, p, o in g.triples((None, RDF.type, RDFS.Class)):
-        classes.add(s)
+        local_name = extract_local_name(s)
+        classes.add(local_name)
+        class_uris.add(s)
     for s, p, o in g.triples((None, RDF.type, OWL.Class)):
-        classes.add(s)
-    # Note: Removed RDF.Class since it doesn't exist
+        local_name = extract_local_name(s)
+        classes.add(local_name)
+        class_uris.add(s)
 
     # Collect all relationships (properties)
     for s, p, o in g.triples((None, RDF.type, RDF.Property)):
-        relationships.add(s)
+        relationships.add(extract_local_name(s))
     for s, p, o in g.triples((None, RDF.type, OWL.ObjectProperty)):
-        relationships.add(s)
+        relationships.add(extract_local_name(s))
     for s, p, o in g.triples((None, RDF.type, OWL.DatatypeProperty)):
-        relationships.add(s)
+        relationships.add(extract_local_name(s))
     for s, p, o in g.triples((None, RDF.type, OWL.AnnotationProperty)):
-        relationships.add(s)
+        relationships.add(extract_local_name(s))
 
-    # Collect all instances
+    # Collect all instances where o is in class_uris
     for s, p, o in g.triples((None, RDF.type, None)):
-        if o in classes:
-            instances.add(s)
+        if o in class_uris:
+            instances.add(extract_local_name(s))
 
     # Convert sets to sorted lists
     classes_list = sorted(classes)
