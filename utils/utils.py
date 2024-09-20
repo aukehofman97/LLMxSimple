@@ -416,24 +416,6 @@ def process_event_type(event_type, uploaded_file_content, client):
     except Exception as e:
         st.error(f"An error occurred while parsing and validating the data: {e}")
         
-def extract_local_name(uri):
-    """
-    Extracts the local name from a URI.
-
-    Args:
-        uri (str): The URI string.
-
-    Returns:
-        str: The local name extracted from the URI.
-    """
-    uri_str = str(uri)
-    if '#' in uri_str:
-        return uri_str.split('#')[-1]
-    elif '/' in uri_str:
-        return uri_str.rsplit('/', 1)[-1]
-    else:
-        return uri_str  # Return the whole URI if no '#' or '/' is found
-
 def ttl_parser(ttl_content):
     """
     Parses TTL content and extracts classes, relationships, and instances.
@@ -487,3 +469,21 @@ def ttl_parser(ttl_content):
     instances_list = sorted(instances)
 
     return classes_list, relationships_list, instances_list
+
+def extract_local_name(uri):
+    """
+    Extracts the local name from a URI.
+
+    Args:
+        uri (str): The URI string.
+
+    Returns:
+        str: The local name extracted from the URI.
+    """
+    uri_str = str(uri)
+    if '#' in uri_str:
+        return uri_str.split('#')[-1]
+    elif '/' in uri_str:
+        return uri_str.rsplit('/', 1)[-1]
+    else:
+        return uri_str  # Return the whole URI if no '#' or '/' is found
