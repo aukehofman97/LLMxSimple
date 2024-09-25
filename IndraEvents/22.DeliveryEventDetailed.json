@@ -1,0 +1,34 @@
+{
+	"messageType": "eventDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1513",
+		"externalEventId": "548",
+		"place": {
+			"placeLocalization": {
+				"addressName": "of the olives",
+				"addressNumber": "33",
+				"location": {
+					"zipCode": "3333",
+					"city": {
+						"name": null,
+						"cityLoCode": "ES ODB"
+					},
+					"country": null
+				},
+				"roadType": "AVENIDA",
+				"terminalNode": null
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-22T11:50:03.000+02:00",
+				"type": "Actual"
+			}
+		},
+		"externalOrderId": null,
+		"eventType": "DROP_OFF_EVENT",
+		"equipments": null,
+		"transportMean": null,
+		"observations": null
+	},
+	"operationType": "CREATE"
+}

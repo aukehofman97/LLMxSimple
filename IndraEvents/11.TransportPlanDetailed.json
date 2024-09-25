@@ -1,0 +1,51 @@
+{
+	"messageType": "transportPlanDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1512",
+		"externalTransportPlanId": "1516",
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_TransportOperator"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B34543543",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Carrier"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"transportMeans": [
+			{
+				"transportMeansId": "50043",
+				"transportMeansType": "Locomotive",
+				"trailerId": null,
+				"driver": null,
+				"name": null,
+				"nationality": null,
+				"itinerary": {
+					"origin": null,
+					"destination": null,
+					"intermediatePoints": null
+				},
+				"damageRemarks": "NA"
+			}
+		],
+		"observations": null,
+		"documents": []
+	},
+	"operationType": "UPDATE"
+}

@@ -1,0 +1,81 @@
+{
+	"messageType": "orderDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1512",
+		"externalOrderId": "1518",
+		"contractCarriageCondition": "NA",
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "C2343242",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Depositary"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Depositor"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"place": {
+			"placeLocalization": {
+				"addressName": null,
+				"addressNumber": null,
+				"location": null,
+				"roadType": null,
+				"terminalNode": {
+					"nodeCode": "50512",
+					"nodeName": "CORDOBA-MERCANCIAS"
+				}
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-22T13:30:48.000+02:00",
+				"type": "Actual"
+			}
+		},
+		"equipments": [
+			{
+				"equipmentId": "JSVU12453627",
+				"equipmentType": {
+					"code": "CN",
+					"description": "Contenedor"
+				},
+				"wagonId": null,
+				"codeITU": "40",
+				"grossWeight": 42000,
+				"isEmpty": false,
+				"sealIndicator": "Precxx3234",
+				"goods": [],
+				"damageRemarks": "string",
+				"city": {
+					"name": "Madrid",
+					"cityLoCode": "ES MAD"
+				},
+				"country": {
+					"name": null,
+					"unLoCode": "ES"
+				},
+				"dangerousEquipment": false,
+				"dangerousEquipmentDescription": ""
+			}
+		],
+		"orderType": "DischargedOrder",
+		"cargoManifest": null,
+		"summaryDeclaration": null,
+		"locator": null,
+		"documents": []
+	},
+	"operationType": "UPDATE"
+}

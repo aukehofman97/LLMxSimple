@@ -1,0 +1,93 @@
+{
+	"messageType": "eventDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "222",
+		"externalEventId": "54",
+		"place": {
+			"placeLocalization": {
+				"addressName": "PORT WTC",
+				"addressNumber": "12",
+				"location": {
+					"zipCode": "08039",
+					"city": {
+						"name": null,
+						"cityLoCode": "ES BCN"
+					},
+					"country": {
+						"name": null,
+						"unLoCode": "ES"
+					}
+				},
+				"roadType": "RONDA",
+				"terminalNode": null
+			},
+			"dateTimeType": {
+				"dateTime": "2023-12-16T22:05:00.000+01:00",
+				"type": "Actual"
+			}
+		},
+		"externalOrderId": null,
+		"eventType": "CARGO_EVENT_LOAD_EVENT",
+		"equipments": [
+			{
+				"equipmentId": "JSVU7458151",
+				"equipmentType": {
+					"code": "CN",
+					"description": null
+				},
+				"wagonId": "8472381",
+				"codeITU": "30E",
+				"grossWeight": 17,
+				"isEmpty": false,
+				"sealIndicator": "PH7894",
+				"goods": [],
+				"damageRemarks": null,
+				"city": {
+					"name": null,
+					"cityLoCode": "ES BCN"
+				},
+				"country": {
+					"name": null,
+					"unLoCode": "ES"
+				},
+				"dangerousEquipment": false,
+				"dangerousEquipmentDescription": "NA"
+			},
+			{
+				"equipmentId": "JSVU7458150",
+				"equipmentType": {
+					"code": "CN",
+					"description": null
+				},
+				"wagonId": "8472380",
+				"codeITU": "40G",
+				"grossWeight": 10,
+				"isEmpty": false,
+				"sealIndicator": "PH7893",
+				"goods": [],
+				"damageRemarks": null,
+				"city": {
+					"name": null,
+					"cityLoCode": "ES BCN"
+				},
+				"country": {
+					"name": null,
+					"unLoCode": "ES"
+				},
+				"dangerousEquipment": true,
+				"dangerousEquipmentDescription": "NA"
+			}
+		],
+		"transportMean": null,
+		"observations": null,
+		"externalReferences": [
+			{
+				"type": "order_reference",
+				"id": "E-00002",
+				"endPoint": null
+			}
+		]
+	},
+	"operationType": "CREATE"
+}

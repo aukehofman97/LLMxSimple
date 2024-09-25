@@ -1,0 +1,156 @@
+{
+	"messageType": "consignmentDetailed",
+	"message": {
+		"externalShipmentId": "ES24D44444444FXHCUHCT",
+		"externalConsignmentId": "1512",
+		"contractCarriageCondition": "NA",
+		"transportService": {
+			"itinerary": {
+				"origin": {
+					"placeLocalization": {
+						"addressName": "of the nations",
+						"addressNumber": "1",
+						"location": null,
+						"roadType": "AVENIDA",
+						"terminalNode": {
+							"nodeCode": "95104",
+							"nodeName": "MADRID-ABROÑIGAL"
+						}
+					},
+					"dateTimeType": {
+						"dateTime": "2024-09-16T11:46:45.000+02:00",
+						"type": "Estimated"
+					}
+				},
+				"destination": {
+					"placeLocalization": {
+						"addressName": "high Palms",
+						"addressNumber": "9",
+						"location": null,
+						"roadType": "AVENIDA",
+						"terminalNode": {
+							"nodeCode": "50512",
+							"nodeName": "CORDOBA-MERCANCIAS"
+						}
+					},
+					"dateTimeType": {
+						"dateTime": "2024-09-22T13:15:48.000+02:00",
+						"type": "Estimated"
+					}
+				},
+				"intermediatePoints": null
+			},
+			"transportModality": "RailWay",
+			"transportMeans": null
+		},
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "D44444444",
+				"actorName": "Company D",
+				"actorRoles": [
+					"LogisticRoles_TransportOperator"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "A11111111",
+				"actorName": "Company B",
+				"actorRoles": [
+					"LogisticRoles_Consignor"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": "Company A",
+				"actorRoles": [
+					"LogisticRoles_Consignee"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "C33333333",
+				"actorName": "Company C",
+				"actorRoles": [
+					"LogisticRoles_DispatchParty"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "F7777777",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Carrier"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"equipments": [
+			{
+				"equipmentId": "JSVU12453627",
+				"equipmentType": {
+					"code": "CN",
+					"description": "Contenedor"
+				},
+				"wagonId": null,
+				"codeITU": "40",
+				"grossWeight": 42000,
+				"isEmpty": true,
+				"sealIndicator": "Precxx3234",
+				"goods": [
+					{
+						"package": {
+							"numberOfPackages": 26,
+							"shippingMark": "bridgestones",
+							"packagingType": null
+						},
+						"goodTypeCode": "tires",
+						"goodDescription": "finished rubber tires",
+						"cargoType": "Pallets",
+						"idNumberList": [
+							"21321"
+						],
+						"goodWeight": 0.0,
+						"goodGrossMass": 23000.0,
+						"goodSize": 12,
+						"temperature": null,
+						"dangerousGoods": false,
+						"dangerousGoodsDescription": null,
+						"damageRemarks": null
+					}
+				],
+				"damageRemarks": "string",
+				"city": {
+					"name": "Madrid",
+					"cityLoCode": "ES MAD"
+				},
+				"country": {
+					"name": null,
+					"unLoCode": "ES"
+				},
+				"dangerousEquipment": false,
+				"dangerousEquipmentDescription": null
+			}
+		],
+		"documents": [],
+		"bookingListValues": [],
+		"dischargePortCall": null,
+		"loadPortCall": null
+	},
+	"operationType": "UPDATE"
+}

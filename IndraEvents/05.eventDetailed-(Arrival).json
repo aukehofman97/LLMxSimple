@@ -1,0 +1,37 @@
+{
+	"messageType": "eventDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "222",
+		"externalEventId": "53",
+		"place": {
+			"placeLocalization": {
+				"addressName": null,
+				"addressNumber": null,
+				"location": null,
+				"roadType": null,
+				"terminalNode": {
+					"nodeCode": "62105",
+					"nodeName": null
+				}
+			},
+			"dateTimeType": {
+				"dateTime": "2024-06-17T17:15:00.000+02:00",
+				"type": "Actual"
+			}
+		},
+		"externalOrderId": null,
+		"eventType": "ARRIVAL_EVENT",
+		"equipments": null,
+		"transportMean": null,
+		"observations": null,
+		"externalReferences": [
+			{
+				"type": "event_reference",
+				"id": "E-00001",
+				"endPoint": null
+			}
+		]
+	},
+	"operationType": "CREATE"
+}

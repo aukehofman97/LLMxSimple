@@ -1,0 +1,75 @@
+{
+	"messageType": "transportPlanDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1513",
+		"externalTransportPlanId": "1521",
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_TransportOperator"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B12321323",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Carrier"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"transportMeans": [
+			{
+				"transportMeansId": "5900BHS",
+				"transportMeansType": "Truck",
+				"trailerId": "2400GH",
+				"driver": {
+					"actorAddress": null,
+					"actorId": "34758493H",
+					"actorName": null,
+					"actorRoles": [
+						"LogisticRoles_Driver"
+					],
+					"actorWebSite": null,
+					"actorEmail": null,
+					"actorPhoneNumber": null
+				},
+				"name": null,
+				"nationality": null,
+				"itinerary": {
+					"origin": null,
+					"destination": null,
+					"intermediatePoints": null
+				},
+				"damageRemarks": "NA"
+			},
+			{
+				"transportMeansId": "6700JH",
+				"transportMeansType": "Truck",
+				"trailerId": "4900HY",
+				"driver": null,
+				"name": null,
+				"nationality": null,
+				"itinerary": {
+					"origin": null,
+					"destination": null,
+					"intermediatePoints": null
+				},
+				"damageRemarks": "NA"
+			}
+		],
+		"observations": null,
+		"documents": []
+	},
+	"operationType": "UPDATE"
+}

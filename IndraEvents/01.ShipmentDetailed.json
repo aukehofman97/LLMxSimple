@@ -1,0 +1,152 @@
+{
+	"messageType": "shipmentDetailed",
+	"message": {
+		"externalShipmentId": "ES24D44444444FXHCUHCT",
+		"contractCarriageCondition": "NA",
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "D44444444",
+				"actorName": "Company D",
+				"actorRoles": [
+					"LogisticRoles_TransportOperator"
+				],
+				"actorWebSite": null,
+				"actorEmail": "Simple4shipment@gmail.com",
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "A11111111",
+				"actorName": "Company B",
+				"actorRoles": [
+					"LogisticRoles_Consignor"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": "Company A",
+				"actorRoles": [
+					"LogisticRoles_Consignee"
+				],
+				"actorWebSite": null,
+				"actorEmail": "Juavie10@gmail.com",
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "C33333333",
+				"actorName": "Company C",
+				"actorRoles": [
+					"LogisticRoles_DispatchParty"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"origin": {
+			"placeLocalization": {
+				"addressName": null,
+				"addressNumber": null,
+				"location": {
+					"zipCode": null,
+					"city": {
+						"name": null,
+						"cityLoCode": "ES MAD"
+					},
+					"country": {
+						"name": null,
+						"unLoCode": "ES"
+					}
+				},
+				"roadType": null,
+				"terminalNode": null
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-16T11:46:45.000+02:00",
+				"type": "Estimated"
+			}
+		},
+		"destination": {
+			"placeLocalization": {
+				"addressName": null,
+				"addressNumber": null,
+				"location": {
+					"zipCode": null,
+					"city": {
+						"name": null,
+						"cityLoCode": "ES SVQ"
+					},
+					"country": {
+						"name": null,
+						"unLoCode": "ES"
+					}
+				},
+				"roadType": null,
+				"terminalNode": null
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-23T13:15:48.000+02:00",
+				"type": "Estimated"
+			}
+		},
+		"equipments": [
+			{
+				"equipmentId": "JSVU12453627",
+				"equipmentType": {
+					"code": "CN",
+					"description": null
+				},
+				"wagonId": null,
+				"codeITU": "40",
+				"grossWeight": 42000,
+				"isEmpty": true,
+				"sealIndicator": "Precxx3234",
+				"goods": [
+					{
+						"package": {
+							"numberOfPackages": 26,
+							"shippingMark": "bridgestones",
+							"packagingType": null
+						},
+						"goodTypeCode": "tires",
+						"goodDescription": "finished rubber tires",
+						"cargoType": "Pallets",
+						"idNumberList": [
+							"21321"
+						],
+						"goodWeight": 0.0,
+						"goodGrossMass": 23000.0,
+						"goodSize": 12,
+						"temperature": null,
+						"dangerousGoods": false,
+						"dangerousGoodsDescription": null,
+						"damageRemarks": null
+					}
+				],
+				"damageRemarks": "string",
+				"city": {
+					"name": null,
+					"cityLoCode": "ES MAD"
+				},
+				"country": null,
+				"dangerousEquipment": false,
+				"dangerousEquipmentDescription": null
+			}
+		],
+		"documents": [],
+		"externalReferences": [
+			{
+				"type": "shipment_reference",
+				"id": "BL112233",
+				"endPoint": null
+			}
+		]
+	},
+	"operationType": "CREATE"
+}

@@ -1,0 +1,43 @@
+{
+	"messageType": "eventDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1512",
+		"externalEventId": "545",
+		"place": {
+			"placeLocalization": {
+				"addressName": "of the nations",
+				"addressNumber": "1",
+				"location": null,
+				"roadType": "AVENIDA",
+				"terminalNode": {
+					"nodeCode": "95104",
+					"nodeName": "MADRID-ABROÑIGAL"
+				}
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-16T12:36:58.000+02:00",
+				"type": "Actual"
+			}
+		},
+		"externalOrderId": null,
+		"eventType": "DEPARTURE_EVENT",
+		"equipments": null,
+		"transportMean": {
+			"transportMeansId": "50043",
+			"transportMeansType": "Locomotive",
+			"trailerId": null,
+			"driver": null,
+			"name": null,
+			"nationality": null,
+			"itinerary": {
+				"origin": null,
+				"destination": null,
+				"intermediatePoints": null
+			},
+			"damageRemarks": "NA"
+		},
+		"observations": null
+	},
+	"operationType": "CREATE"
+}

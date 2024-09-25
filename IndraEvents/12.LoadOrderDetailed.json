@@ -1,0 +1,81 @@
+{
+	"messageType": "orderDetailed",
+	"message": {
+		"externalShipmentId": null,
+		"externalConsignmentId": "1512",
+		"externalOrderId": "1517",
+		"contractCarriageCondition": "NA",
+		"involvedActors": [
+			{
+				"actorAddress": null,
+				"actorId": "L23432432",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Depositary"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			},
+			{
+				"actorAddress": null,
+				"actorId": "B22222222",
+				"actorName": null,
+				"actorRoles": [
+					"LogisticRoles_Depositor"
+				],
+				"actorWebSite": null,
+				"actorEmail": null,
+				"actorPhoneNumber": null
+			}
+		],
+		"place": {
+			"placeLocalization": {
+				"addressName": "of the nations",
+				"addressNumber": "1",
+				"location": null,
+				"roadType": "AVENIDA",
+				"terminalNode": {
+					"nodeCode": "95104",
+					"nodeName": "MADRID-ABROÑIGAL"
+				}
+			},
+			"dateTimeType": {
+				"dateTime": "2024-09-16T11:30:45.000+02:00",
+				"type": "Actual"
+			}
+		},
+		"equipments": [
+			{
+				"equipmentId": "JSVU12453627",
+				"equipmentType": {
+					"code": "CN",
+					"description": "Contenedor"
+				},
+				"wagonId": null,
+				"codeITU": "40",
+				"grossWeight": 42000,
+				"isEmpty": false,
+				"sealIndicator": "Precxx3234",
+				"goods": [],
+				"damageRemarks": "string",
+				"city": {
+					"name": "Madrid",
+					"cityLoCode": "ES MAD"
+				},
+				"country": {
+					"name": null,
+					"unLoCode": "ES"
+				},
+				"dangerousEquipment": false,
+				"dangerousEquipmentDescription": ""
+			}
+		],
+		"orderType": "CargoOrder",
+		"cargoManifest": null,
+		"summaryDeclaration": null,
+		"locator": null,
+		"documents": []
+	},
+	"operationType": "UPDATE"
+}
