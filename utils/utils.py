@@ -416,33 +416,62 @@ def process_event_type(event_type, uploaded_file_content, client):
     except Exception as e:
         st.error(f"An error occurred while parsing and validating the data: {e}")
         
-def extract_local_name(uri):
+def extract_concept_and_local_name(uri):
+    """
+    Extracts the concept and local name from a URI.
+
+    Args:
+        uri (str): The URI string.
+
+    Returns:
+        tuple: A tuple containing the concept and local name.
+    """
     uri_str = str(uri)
     if '#' in uri_str:
-        return uri_str.split('#')[-1]
+        namespace, local_name = uri_str.rsplit('#', 1)
     elif '/' in uri_str:
-        return uri_str.rsplit('/', 1)[-1]
+        namespace, local_name = uri_str.rsplit('/', 1)
     else:
-        return uri_str
+        namespace = ''
+        local_name = uri_str
+
+    # Extract the concept from the namespace
+    if '#' in namespace:
+        concept = namespace.rsplit('#', 1)[-1]
+    elif '/' in namespace:
+        concept = namespace.rsplit('/', 1)[-1]
+    else:
+        concept = namespace
+
+    return concept, local_name
 
 def ttl_parser(ttl_content):
+    """
+    Parses TTL content and extracts properties (both data and object properties) and their associated concepts from property URIs.
+
+    Args:
+        ttl_content (str): The content of the TTL file as a string.
+
+    Returns:
+        list: A list of lists, where each sublist contains a concept and a property name.
+    """
+    # Initialize a Graph
     g = Graph()
+
+    # Parse the TTL content
     g.parse(data=ttl_content, format="turtle")
 
-    concept_data_properties = []
+    # List to store the pairs [Concept, PropertyName]
+    concept_properties = []
 
-    # Iterate over all data properties
-    for dp in g.subjects(RDF.type, OWL.DatatypeProperty):
-        # For each data property, get its domain(s)
-        domains = list(g.objects(dp, RDFS.domain))
-        if domains:
-            for domain in domains:
-                concept_name = extract_local_name(domain)
-                data_property_name = extract_local_name(dp)
-                concept_data_properties.append([concept_name, data_property_name])
-        else:
-            # Handle data properties without domain
-            data_property_name = extract_local_name(dp)
-            concept_data_properties.append(["[No domain specified]", data_property_name])
+    # Define property types to consider
+    property_types = [OWL.DatatypeProperty, OWL.ObjectProperty]
 
-    return concept_data_properties
+    for prop_type in property_types:
+        # Iterate over all properties of this type
+        for prop in g.subjects(RDF.type, prop_type):
+            # Extract concept and property name from the property URI
+            concept_name, property_name = extract_concept_and_local_name(prop)
+            concept_properties.append([concept_name, property_name])
+
+    return concept_properties

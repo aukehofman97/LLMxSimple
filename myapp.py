@@ -314,18 +314,17 @@ class DataMappingApp:
             st.subheader("TTL File Content:")
             st.code(ttl_content, language='turtle')
 
-            # Parse the TTL content
             try:
-            # Call the ttl_parser function
-                concept_data_properties = ttl_parser(ttl_content)
+                # Call the ttl_parser function
+                concept_properties = ttl_parser(ttl_content)
 
                 # Display the results
-                st.subheader("Data Properties and Associated Concepts:")
-                if concept_data_properties:
-                    for concept, data_property in concept_data_properties:
-                        st.write(f"{concept} - {data_property}")
+                st.subheader("Properties and Associated Concepts:")
+                if concept_properties:
+                    for concept, prop in concept_properties:
+                        st.write(f"{concept} - {prop}")
                 else:
-                    st.write("No data properties and associated concepts found.")
+                    st.write("No properties and associated concepts found.")
 
             except Exception as e:
                 st.error(f"An error occurred while parsing the TTL file: {e}")
