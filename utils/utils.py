@@ -416,60 +416,6 @@ def process_event_type(event_type, uploaded_file_content, client):
     except Exception as e:
         st.error(f"An error occurred while parsing and validating the data: {e}")
         
-def ttl_parser(ttl_content):
-    """
-    Parses TTL content and extracts classes, relationships, and instances.
-
-    Args:
-        ttl_content (str): The content of the TTL file as a string.
-
-    Returns:
-        tuple: A tuple containing three lists: classes_list, relationships_list, instances_list.
-    """
-    # Initialize a Graph
-    g = Graph()
-
-    # Parse the TTL content
-    g.parse(data=ttl_content, format="turtle")
-
-    # Sets to store classes, relationships (properties), and instances
-    classes = set()
-    relationships = set()
-    instances = set()
-
-    # Collect all classes and their URIs
-    class_uris = set()
-    for s, p, o in g.triples((None, RDF.type, RDFS.Class)):
-        local_name = extract_local_name(s)
-        classes.add(local_name)
-        class_uris.add(s)
-    for s, p, o in g.triples((None, RDF.type, OWL.Class)):
-        local_name = extract_local_name(s)
-        classes.add(local_name)
-        class_uris.add(s)
-
-    # Collect all relationships (properties)
-    for s, p, o in g.triples((None, RDF.type, RDF.Property)):
-        relationships.add(extract_local_name(s))
-    for s, p, o in g.triples((None, RDF.type, OWL.ObjectProperty)):
-        relationships.add(extract_local_name(s))
-    for s, p, o in g.triples((None, RDF.type, OWL.DatatypeProperty)):
-        relationships.add(extract_local_name(s))
-    for s, p, o in g.triples((None, RDF.type, OWL.AnnotationProperty)):
-        relationships.add(extract_local_name(s))
-
-    # Collect all instances where o is in class_uris
-    for s, p, o in g.triples((None, RDF.type, None)):
-        if o in class_uris:
-            instances.add(extract_local_name(s))
-
-    # Convert sets to sorted lists
-    classes_list = sorted(classes)
-    relationships_list = sorted(relationships)
-    instances_list = sorted(instances)
-
-    return classes_list, relationships_list, instances_list
-
 def extract_local_name(uri):
     """
     Extracts the local name from a URI.
@@ -487,3 +433,40 @@ def extract_local_name(uri):
         return uri_str.rsplit('/', 1)[-1]
     else:
         return uri_str  # Return the whole URI if no '#' or '/' is found
+
+def ttl_parser(ttl_content):
+    """
+    Parses TTL content and extracts data properties and their associated concepts.
+
+    Args:
+        ttl_content (str): The content of the TTL file as a string.
+
+    Returns:
+        list: A list of lists, where each sublist contains a concept and a data property.
+    """
+    # Initialize a Graph
+    g = Graph()
+
+    # Parse the TTL content
+    g.parse(data=ttl_content, format="turtle")
+
+    # List to store the pairs [Concept, DataProperty]
+    concept_data_properties = []
+
+    # Iterate over all data properties
+    for dp in g.subjects(RDF.type, OWL.DatatypeProperty):
+        # For each data property, get its domain(s)
+        domains = list(g.objects(dp, RDFS.domain))
+        # If no domain is specified, domain is unspecified
+        if domains:
+            for domain in domains:
+                concept_name = extract_local_name(domain)
+                data_property_name = extract_local_name(dp)
+                concept_data_properties.append([concept_name, data_property_name])
+        else:
+            # Handle data properties without domain
+            data_property_name = extract_local_name(dp)
+            concept_data_properties.append(["[No domain specified]", data_property_name])
+
+    # Return the list of pairs
+    return concept_data_properties
