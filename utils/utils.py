@@ -417,47 +417,24 @@ def process_event_type(event_type, uploaded_file_content, client):
         st.error(f"An error occurred while parsing and validating the data: {e}")
         
 def extract_local_name(uri):
-    """
-    Extracts the local name from a URI.
-
-    Args:
-        uri (str): The URI string.
-
-    Returns:
-        str: The local name extracted from the URI.
-    """
     uri_str = str(uri)
     if '#' in uri_str:
         return uri_str.split('#')[-1]
     elif '/' in uri_str:
         return uri_str.rsplit('/', 1)[-1]
     else:
-        return uri_str  # Return the whole URI if no '#' or '/' is found
+        return uri_str
 
 def ttl_parser(ttl_content):
-    """
-    Parses TTL content and extracts data properties and their associated concepts.
-
-    Args:
-        ttl_content (str): The content of the TTL file as a string.
-
-    Returns:
-        list: A list of lists, where each sublist contains a concept and a data property.
-    """
-    # Initialize a Graph
     g = Graph()
-
-    # Parse the TTL content
     g.parse(data=ttl_content, format="turtle")
 
-    # List to store the pairs [Concept, DataProperty]
     concept_data_properties = []
 
     # Iterate over all data properties
     for dp in g.subjects(RDF.type, OWL.DatatypeProperty):
         # For each data property, get its domain(s)
         domains = list(g.objects(dp, RDFS.domain))
-        # If no domain is specified, domain is unspecified
         if domains:
             for domain in domains:
                 concept_name = extract_local_name(domain)
@@ -468,5 +445,4 @@ def ttl_parser(ttl_content):
             data_property_name = extract_local_name(dp)
             concept_data_properties.append(["[No domain specified]", data_property_name])
 
-    # Return the list of pairs
     return concept_data_properties
