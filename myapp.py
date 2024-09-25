@@ -316,30 +316,16 @@ class DataMappingApp:
 
             # Parse the TTL content
             try:
-                # Call the ttl_parser function
-                classes_list, relationships_list, instances_list = ttl_parser(ttl_content)
+            # Call the ttl_parser function
+                concept_data_properties = ttl_parser(ttl_content)
 
                 # Display the results
-                st.subheader("Classes:")
-                if classes_list:
-                    for c in classes_list:
-                        st.write(c)
+                st.subheader("Data Properties and Associated Concepts:")
+                if concept_data_properties:
+                    for concept, data_property in concept_data_properties:
+                        st.write(f"{concept} - {data_property}")
                 else:
-                    st.write("No classes found.")
-
-                st.subheader("Relationships:")
-                if relationships_list:
-                    for r in relationships_list:
-                        st.write(r)
-                else:
-                    st.write("No relationships found.")
-
-                st.subheader("Instances:")
-                if instances_list:
-                    for i in instances_list:
-                        st.write(i)
-                else:
-                    st.write("No instances found.")
+                    st.write("No data properties and associated concepts found.")
 
             except Exception as e:
                 st.error(f"An error occurred while parsing the TTL file: {e}")
