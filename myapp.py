@@ -5,6 +5,7 @@ from openai import OpenAI
 import pandas as pd
 import json
 import os
+import io  
 
 from utils.utils import read_file, read_predefined_file, save_text, get_openai_response, save_user_info, extract_event_uuids, extract_main_classes, extract_object_fields, update_field_value, extract_all_fields, find_field_value, process_assistance_option, extract_event_type_from_response, process_event_type, ttl_parser, extract_concept_and_local_name
 from models import *
@@ -321,8 +322,21 @@ class DataMappingApp:
                 # Display the results
                 st.subheader("Properties and Associated Concepts:")
                 if concept_properties:
-                    for concept, prop in concept_properties:
-                        st.write(f"{concept} - {prop}")
+                    # Create a DataFrame
+                    df = pd.DataFrame(concept_properties, columns=['Concept', 'Property'])
+                    st.dataframe(df)
+
+                    # Create a CSV buffer
+                    csv_buffer = io.StringIO()
+                    df.to_csv(csv_buffer, index=False)
+
+                    # Create a download button
+                    st.download_button(
+                        label="Download CSV",
+                        data=csv_buffer.getvalue(),
+                        file_name="FEDeRATED_ConceptsAndProperties.csv",
+                        mime="text/csv"
+                    )
                 else:
                     st.write("No properties and associated concepts found.")
 
