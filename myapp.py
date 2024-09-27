@@ -382,8 +382,11 @@ class DataMappingApp:
     Instructions:
     - Return the 1:1 matches (properties that have the exact same name).
     - Return the matches that are almost the same (slight name changes or different syntax): if a word includes 'time' or 'transportmean', it can be matched to the ttl with 'time' / 'transportmean' included.
-    - Return the matches of which the semantics are the same, but the notation is different: e.g., datetime is the same as timeStamp.
+    - Return the matches of which the semantics are the same, but the notation is different: e.g., datetime is the same as timeStamp, and a container is the same as equipment.
     - Return the items in the json_keys list that you are not capable of matching.
+    
+    Constraints:
+    - the UUID from the property list is never matched.
 
     Provide the results in a structured format, like a table, where the left side shows as column header 'FEDeRATED Concept' and the right 'Data Input'.
     """
