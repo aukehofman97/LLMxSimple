@@ -39,7 +39,7 @@ def get_openai_response(client, messages):
             model="gpt-4o-mini",  # You can use other models like "gpt-3.5-turbo"
             messages=messages,
             max_tokens=1000,
-            temperature=0.9,
+            temperature=0.4,
         )
         return response.choices[0].message.content
     except Exception as e:
