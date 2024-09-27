@@ -316,6 +316,9 @@ class DataMappingApp:
             # Read the TTL file content
             ttl_content_bytes = uploaded_file.getvalue()
             ttl_content = ttl_content_bytes.decode("utf-8")
+             # Display the TTL file content
+            st.subheader("TTL File Content:")
+            st.code(ttl_content, language='turtle')
 
             try:
                 # Call the ttl_parser function
