@@ -300,64 +300,64 @@ class DataMappingApp:
                     if st.button("Further Assistance", key="tab3_further_assistance_button"):
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
-def tab_four(self):
-    st.title('Ontology Explorer')
+    def tab_four(self):
+        st.title('Ontology Explorer')
 
-    # Allow users to upload a .ttl file
-    uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
+        # Allow users to upload a .ttl file
+        uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
 
-    if uploaded_file is not None:
-        # Read the file content
-        ttl_content_bytes = uploaded_file.getvalue()
-        ttl_content = ttl_content_bytes.decode("utf-8")
+        if uploaded_file is not None:
+            # Read the file content
+            ttl_content_bytes = uploaded_file.getvalue()
+            ttl_content = ttl_content_bytes.decode("utf-8")
 
-        try:
-            # Call the ttl_parser function
-            concept_properties = ttl_parser(ttl_content)
+            try:
+                # Call the ttl_parser function
+                concept_properties = ttl_parser(ttl_content)
 
-            # Display the results
-            st.subheader("Properties and Associated Concepts:")
-            if concept_properties:
-                # Create a DataFrame
-                df = pd.DataFrame(concept_properties, columns=['Concept', 'Property'])
-                st.dataframe(df)
+                # Display the results
+                st.subheader("Properties and Associated Concepts:")
+                if concept_properties:
+                    # Create a DataFrame
+                    df = pd.DataFrame(concept_properties, columns=['Concept', 'Property'])
+                    st.dataframe(df)
 
-                # Step 1: Save all the Properties in a separate list
-                property_list = df['Property'].tolist()
-                st.subheader("List of Properties from TTL File:")
-                st.write(property_list)
+                    # Step 1: Save all the Properties in a separate list
+                    property_list = df['Property'].tolist()
+                    st.subheader("List of Properties from TTL File:")
+                    st.write(property_list)
 
-                # Create a CSV buffer
-                csv_buffer = io.StringIO()
-                df.to_csv(csv_buffer, index=False)
+                    # Create a CSV buffer
+                    csv_buffer = io.StringIO()
+                    df.to_csv(csv_buffer, index=False)
 
-                # Create a download button
-                st.download_button(
-                    label="Download CSV",
-                    data=csv_buffer.getvalue(),
-                    file_name="FEDeRATED_ConceptsAndProperties.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.write("No properties and associated concepts found.")
+                    # Create a download button
+                    st.download_button(
+                        label="Download CSV",
+                        data=csv_buffer.getvalue(),
+                        file_name="FEDeRATED_ConceptsAndProperties.csv",
+                        mime="text/csv"
+                    )
+                else:
+                    st.write("No properties and associated concepts found.")
 
-        except Exception as e:
-            st.error(f"An error occurred while parsing the TTL file: {e}")
+            except Exception as e:
+                st.error(f"An error occurred while parsing the TTL file: {e}")
 
-    # Step 2: Add another upload box for JSON files
-    uploaded_json_file = st.file_uploader("Upload a JSON file", type=["json"], key="tab4_json_file_uploader")
+        # Step 2: Add another upload box for JSON files
+        uploaded_json_file = st.file_uploader("Upload a JSON file", type=["json"], key="tab4_json_file_uploader")
 
-    if uploaded_json_file is not None:
-        # Read the JSON content
-        json_content_bytes = uploaded_json_file.getvalue()
-        json_content_str = json_content_bytes.decode('utf-8')
+        if uploaded_json_file is not None:
+            # Read the JSON content
+            json_content_bytes = uploaded_json_file.getvalue()
+            json_content_str = json_content_bytes.decode('utf-8')
 
-        try:
-            # Call the json_parser function
-            json_keys = json_parser(json_content_str)
+            try:
+                # Call the json_parser function
+                json_keys = json_parser(json_content_str)
 
-            # Step 4: Print the list with the properties found
-            st.subheader("Keys in JSON File:")
-            st.write(json_keys)
-        except Exception as e:
-            st.error(f"An error occurred while parsing the JSON file: {e}")
+                # Step 4: Print the list with the properties found
+                st.subheader("Keys in JSON File:")
+                st.write(json_keys)
+            except Exception as e:
+                st.error(f"An error occurred while parsing the JSON file: {e}")
