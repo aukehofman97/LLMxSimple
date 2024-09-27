@@ -475,3 +475,35 @@ def ttl_parser(ttl_content):
             concept_properties.append([concept_name, property_name])
 
     return concept_properties
+
+def json_parser(json_content_str):
+    """
+    Parses JSON content and extracts all keys (objects), including nested keys.
+
+    Args:
+        json_content_str (str): The JSON content as a string.
+
+    Returns:
+        list: A list of keys found in the JSON content.
+    """
+    data = json.loads(json_content_str)
+    result = []
+
+    def recursive_extract(obj):
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                result.append(key)
+                # If the value is a nested structure, recurse
+                if isinstance(value, (dict, list)):
+                    recursive_extract(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                recursive_extract(item)
+
+    if 'message' in data:
+        recursive_extract(data['message'])
+    else:
+        st.warning("'message' key not found in JSON.")
+        recursive_extract(data)
+
+    return result
