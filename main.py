@@ -7,7 +7,7 @@ def main():
     st.set_page_config(layout='wide')
     st.title('LLM for Logistics Data Mapping')
 
-    tab1, tab2, tab3, tab4 = st.tabs(["Own Structure ➡️ FEDeRATED", "FEDeRATED ➡️ Own Structure", "Event Type Detector and Transformer", "Ontology Explorer"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Own Structure ➡️ FEDeRATED", "FEDeRATED ➡️ Own Structure", "Event Type Detector and Transformer", "Similarity Matching"])
 
     with tab1:
         app.tab_one()

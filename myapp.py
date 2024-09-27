@@ -301,7 +301,7 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
-        st.title('Ontology Matching')
+        st.title('Similarity Matching')
 
         # Allow users to upload a .ttl file
         uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
@@ -317,8 +317,8 @@ class DataMappingApp:
             ttl_content_bytes = uploaded_file.getvalue()
             ttl_content = ttl_content_bytes.decode("utf-8")
              # Display the TTL file content
-            st.subheader("TTL File Content:")
-            st.code(ttl_content, language='turtle')
+            #st.subheader("TTL File Content:")
+            #st.code(ttl_content, language='turtle')
 
             try:
                 # Call the ttl_parser function
