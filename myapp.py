@@ -396,7 +396,7 @@ class DataMappingApp:
 
                 # Call the OpenAI API
                 with st.spinner('Matching...'):
-                    response = get_openai_response(messages)
+                    response = get_openai_response(client, messages)
 
                 # Display the response
                 st.subheader("Matching Results:")
