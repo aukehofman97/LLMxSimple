@@ -387,8 +387,10 @@ class DataMappingApp:
     
     Constraints:
     - the UUID from the property list is never matched.
-
-    Provide the results in a structured format, like a table, where the left side shows as column header 'FEDeRATED Concept' and the right 'Data Input'.
+    
+    Output:
+    - Provide the results in a structured format, like a table, where the left side shows as column header 'FEDeRATED Concept' and the right 'Data Input'.
+    - Create a table per return, so the 1:1 matches, almost same matches, same semantics matches, no matches
     """
 
                 # Prepare the messages for the OpenAI API
