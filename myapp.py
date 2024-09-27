@@ -381,11 +381,11 @@ class DataMappingApp:
 
     Instructions:
     - Return the 1:1 matches (properties that have the exact same name).
-    - Return the matches that are almost the same (slight name changes or different syntax).
+    - Return the matches that are almost the same (slight name changes or different syntax): if a word includes 'time', it can be matched to the ttl with 'time' included.
     - Return the matches of which the semantics are the same, but the notation is different: e.g., datetime is the same as timeStamp.
     - Return the items in the json_keys list that you are not capable of matching.
 
-    Provide the results in a structured format.
+    Provide the results in a structured format, like a table.
     """
 
                 # Prepare the messages for the OpenAI API
