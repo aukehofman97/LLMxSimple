@@ -301,13 +301,19 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
-        st.title('Ontology Explorer')
+        st.title('Ontology Matching')
 
         # Allow users to upload a .ttl file
         uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
 
+        # Add another upload box for JSON files
+        uploaded_json_file = st.file_uploader("Upload a JSON file", type=["json"], key="tab4_json_file_uploader")
+
+        property_list = []
+        json_keys = []
+
         if uploaded_file is not None:
-            # Read the file content
+            # Read the TTL file content
             ttl_content_bytes = uploaded_file.getvalue()
             ttl_content = ttl_content_bytes.decode("utf-8")
 
@@ -322,7 +328,7 @@ class DataMappingApp:
                     df = pd.DataFrame(concept_properties, columns=['Concept', 'Property'])
                     st.dataframe(df)
 
-                    # Step 1: Save all the Properties in a separate list
+                    # Save all the Properties in a separate list
                     property_list = df['Property'].tolist()
                     st.subheader("List of Properties from TTL File:")
                     st.write(property_list)
@@ -344,9 +350,6 @@ class DataMappingApp:
             except Exception as e:
                 st.error(f"An error occurred while parsing the TTL file: {e}")
 
-        # Step 2: Add another upload box for JSON files
-        uploaded_json_file = st.file_uploader("Upload a JSON file", type=["json"], key="tab4_json_file_uploader")
-
         if uploaded_json_file is not None:
             # Read the JSON content
             json_content_bytes = uploaded_json_file.getvalue()
@@ -356,8 +359,45 @@ class DataMappingApp:
                 # Call the json_parser function
                 json_keys = json_parser(json_content_str)
 
-                # Step 4: Print the list with the properties found
+                # Print the list with the properties found
                 st.subheader("Keys in JSON File:")
                 st.write(json_keys)
             except Exception as e:
                 st.error(f"An error occurred while parsing the JSON file: {e}")
+
+        # Check if both files are uploaded
+        if property_list and json_keys:
+            # Add a 'Match' button
+            if st.button('Match'):
+                # Prepare the prompt
+                prompt_text = f"""
+    Act as an advanced data scientist. Match the properties from 'property_list' and 'json_keys'.
+
+    Properties from TTL file (property_list):
+    {property_list}
+
+    Keys from JSON file (json_keys):
+    {json_keys}
+
+    Instructions:
+    - Return the 1:1 matches (properties that have the exact same name).
+    - Return the matches that are almost the same (slight name changes or different syntax).
+    - Return the matches of which you think the semantics are the same, but the notation is different.
+    - Return the items in the json_keys list that you are not capable of matching.
+
+    Provide the results in a structured format.
+    """
+
+                # Prepare the messages for the OpenAI API
+                messages = [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt_text}
+                ]
+
+                # Call the OpenAI API
+                with st.spinner('Matching...'):
+                    response = get_openai_response(messages)
+
+                # Display the response
+                st.subheader("Matching Results:")
+                st.write(response)
