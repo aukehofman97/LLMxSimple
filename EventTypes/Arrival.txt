@@ -1,35 +1,55 @@
-Arrival events follow a fixed structure in FEDeRATED. You are instructed to always follow this structure.
-It contains the following data fields:
-- UUID (event)
-- UUID (Location) always goes accompanied by the type of event, in this case arrival, so ARR, under event
-- UUID (BusinessTransaction) under event
-- Actual datetime under event
-- Milestone, value is always 'start', under event
-- function under location
-- locationCode under location
-- ExternalReference under BusinessTransaction
+FUNCTION transformData(input):
+    # Initialize the output structure with empty lists for Event, Location, and BusinessTransaction
+    OUTPUT = {
+        "Event": [],
+        "Location": [],
+        "BusinessTransaction": []
+    }
 
-IMPORTANT: the structure down below is an example. You must use this structure in terms of classes and fields, but do not take over the data.
-So, you are to extract the "locationCode" from the uploaded file, and not make the value "62105"
+    # Generate unique UUIDs for the main event, location, and business transaction entities
+    main_event_uuid = generateUUID()
+    location_uuid = generateUUID() IF "place" in input["message"] ELSE null
+    business_transaction_uuid = generateUUID() IF "externalConsignmentId" in input["message"] ELSE null
 
+    # Process Event
+    MAIN_EVENT = {
+        "Event_UUID": main_event_uuid,
+        "Actual_Time": input["message"]["place"]["dateTimeType"]["dateTime"] IF "place" in input["message"] ELSE null,
+        "milestone": deriveMilestone(input["message"]["eventType"]), # Custom function to map event types to milestones
+        "involvesLocation": location_uuid,
+        "involvesBusinessTransaction": business_transaction_uuid
+    }
+    OUTPUT["Event"].append(MAIN_EVENT)
 
-{
-	"Event":[
-		{
-      		"Event_UUID": "genid-48391028-0",
-      		"Actual_Time": "2024-07-08T14:22:00",
-      		"milestone": "start",
-      		"involvesLocation": "ARR","genid-48391028-1",
-		"involvesBusinessTransaction: "genid-48391028-2" }],
-	"Location": [
-		{	
-		"UUID":"genid-48391028-1",
-		"function": "Terminal"
-		"locationCode": "12345",
-		}],
-	"BusinessTransaction": [ {
-		"UUID":"genid-48391028-2",
-		"externalReference":222	
-		}]
-			
-}
+    # Process Location if present in the input
+    IF "place" in input["message"]:
+        LOCATION = {
+            "UUID": location_uuid,
+            "function": "Terminal", # Example fixed function type; adjust based on input if needed
+            "locationCode": input["message"]["place"]["placeLocalization"]["terminalNode"]["nodeCode"]
+        }
+        OUTPUT["Location"].append(LOCATION)
+
+    # Process BusinessTransaction if present in the input
+    IF "externalConsignmentId" in input["message"]:
+        BUSINESS_TRANSACTION = {
+            "UUID": business_transaction_uuid,
+            "externalReference": input["message"]["externalConsignmentId"]
+        }
+        OUTPUT["BusinessTransaction"].append(BUSINESS_TRANSACTION)
+
+    # Return the transformed output structure
+    RETURN OUTPUT
+
+# Utility Functions
+FUNCTION generateUUID():
+    RETURN "genid-" + randomString()  # Generate a unique identifier string
+
+FUNCTION deriveMilestone(eventType):
+    # Define mappings for different event types
+    MILESTONE_MAPPINGS = {
+        "ARRIVAL_EVENT": "start",
+        "DEPARTURE_EVENT": "end"
+        # Add additional mappings as necessary
+    }
+    RETURN MILESTONE_MAPPINGS.get(eventType, "unknown")

@@ -11,10 +11,10 @@ After uploading the file and specifying the type of event, this must be converte
 If this translation has not been carried out correctly, a user can give their text input to improve it.
 
 Input: File upload from user (json) and selected event type.
-Output: Transformed data according to the FEDeRATED ontology and golden standard in json structure.
+Output: Transformed data according to the pseudocode in json structure.
 
 Task to achieve output: 
-Transform the uploaded data by a user to the common standard as specified by the golden standard uploaded in an example file.
+Transform the uploaded data by a user to the common standard as specified by the pseudocode uploaded in an event file.
 
 Data Structure: 
 Start with a random genid which is an event (specified in the constraints below), followed by the time and its timestamp, then the location uuid and then the transport means uuid. 
@@ -38,14 +38,6 @@ Constraints:
 14. The value 'involvesLocation' for load events has as code 'PLO' added to it before the generated UUID as follows: 'PLO', 'genid-...'. So there are 2 values.
 15. involvesLocation must always be a list of 2 strings, so in this sense: "involvesLocation": ["ARR", "genid-48391028-1"],
 
-Explanation on example_turtle variable:
-This variable contains an example event that serves as a golden standard. 
-It starts with the random UUID for the event. 
-The namespace is event. Further it has several subevents, like the time and milestones.
-It also involves digitalTwins. 
-These are random uuids that refer to other digital twins, so they link to the random uuids.
-These random uuids are part of digital twins, which can be a location for example or a transport means. 
-Those always have the namespace DigitalTwin.
 
 
 
