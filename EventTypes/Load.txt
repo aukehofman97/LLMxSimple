@@ -1,78 +1,108 @@
-Load events follow a fixed structure in FEDeRATED. You are instructed to always follow this structure.
-It contains the following data fields:
-- UUID (event)
-- UUID (Location) always goes accompanied by the type of event, in this case loading, so PLO, under event
-- UUID (BusinessTransaction) under event
-- UUID (Seal) under event
-- UUID (Wagon) under event
-- UUID (Container); there can be multiple container events.
-- Actual datetime under event
-- Milestone, value is always 'start', under event
-- Location function under location
-- Location Code under location
-- ExternalReference under BusinessTransaction
-- ContainerNumber under Container; indicated in the uploads as an equipmentId
-- ContainerSize under Container
-- ContainerType under Container; found in the uploads under equipmentType
-- Full/Empty under Container
-- DamageRemarks under Container
-- DangerousIndication under Container
-- Description under Container
+FUNCTION transformData(input):
+    # Initialize the output structure with empty lists for Event, Location, and BusinessTransaction
+    OUTPUT = {
+        "Event": LIST,
+        "Location": LIST,
+        "BusinessTransaction": LIST
+    }
 
-IMPORTANT: the structure down below is an example. You must use this structure in terms of classes and fields, but do not take over the data.
-So,  you are to extract the "ContainerNumber" from the uploaded file, and not make the value "SIDJE3085"
+    # Generate UUIDs for main event, location, and business transaction entities
+    main_event_uuid = STRING(generateUUID())
+    location_uuid = STRING(generateUUID())
+    business_transaction_uuid = STRING(generateUUID())
 
-{
-	"Event":[
-		{
-      	"Event_UUID": "genid-48391028-0",
-      	"Actual_Time": "2024-07-08T14:22:00",
-      	"milestone": "start",
-      	"involvesLocation": "PLO","genid-48391028-1",
-		"involvesBusinessTransaction: "genid-48391028-2",
-		"involvesSeal": "genid-48391028-3",
-		"involvesWagon": "genid-48391028-4",
-		"involvesContainer": ["genid-48391028-5", genid-48391028-6]
-		}],
-	"Location": [
-		{	
-		"UUID":"genid-48391028-1",
-		"function": "Terminal"
-		"locationCode": "62105",
-		}],
-	"BusinessTransaction": [ {
-		"UUID":"genid-48391028-2",
-		"externalReference":222	
-		}],
-    "Seal": [{
-        "UUID": "genid-48391028-3",
-        "SealNumber": "PH7894"
-        }],
-    "Wagon": [{
-        "UUID": "genid-48391028-4",
-        "WagonNumber": "8472381",
-        "WagonType": ""
-        }],
-	"Container": [
-		{
-		"UUID": "genid-48391028-5",
-		"ContainerNumber": "JSVU7458151",
-		"ContainerSize": 17,
-		"ContainerType": "CN",
-		"Full_Empty": false,
-		"DamageRemarks": null,
-		"DangerousIndication": "NA",
-		"Description": null
-        }],
-		Container": [
-		{
-		"UUID": "genid-48391028-6",
-		"ContainerNumber": "SIDJE3085",
-		"ContainerSize": 2,
-		"ContainerType": "CN",
-		"Full_Empty": true,
-		"DamageRemarks": null,
-		"DangerousIndication": "NA",
-		"Description": null
-        }]			
-}
+    # Process Event
+    MAIN_EVENT = {
+        "Event_UUID": STRING(main_event_uuid),
+        "Actual_Time": STRING(input["message"]["place"]["dateTimeType"]["dateTime"]) IF "place" in input["message"] ELSE null,
+        "milestone": STRING(deriveMilestone(input["message"]["eventType"])),
+        "involvesLocation": STRING(location_uuid),
+        "involvesBusinessTransaction": STRING(business_transaction_uuid),
+        "additionalInvolves": LIST # Placeholder for additional dynamic entities
+    }
+
+    # Process Location as always present, with content dynamically set from the input
+    LOCATION = {
+        "UUID": STRING(location_uuid),
+        "function": STRING("Terminal"), # Example fixed function type; modify if additional logic needed
+        "locationCode": STRING(input["message"]["place"]["placeLocalization"]["terminalNode"]["nodeCode"]) IF input["message"]["place"]["placeLocalization"]["terminalNode"] ELSE null
+    }
+    OUTPUT["Location"].append(LOCATION)
+
+    # Process BusinessTransaction as always present, with content dynamically set from the input
+    BUSINESS_TRANSACTION = {
+        "UUID": STRING(business_transaction_uuid),
+        "externalReference": STRING(input["message"]["externalConsignmentId"])
+    }
+    OUTPUT["BusinessTransaction"].append(BUSINESS_TRANSACTION)
+
+    # Detect and process any additional dynamic entities
+    IF "equipments" in input["message"]:
+        FOR each equipment IN input["message"]["equipments"]:
+            entity_uuids = processDynamicEntities(equipment, OUTPUT) # Collect UUIDs for detected entities
+            MAIN_EVENT["additionalInvolves"].extend(entity_uuids)
+
+    # Append MAIN_EVENT to Event in OUTPUT
+    OUTPUT["Event"].append(MAIN_EVENT)
+
+    # Return the transformed output structure
+    RETURN OUTPUT
+
+# Utility function to handle dynamic entity generation based on attributes in equipment
+FUNCTION processDynamicEntities(entity, OUTPUT):
+    # Initialize a list to store UUIDs for entities to be linked in MAIN_EVENT
+    entityUUIDs = LIST
+
+    # Process dynamic attributes for Container, Seal, Wagon, etc.
+    IF "equipmentId" in entity:
+        container_uuid = STRING(generateUUID())
+        CONTAINER = {
+            "UUID": container_uuid,
+            "ContainerNumber": STRING(entity["equipmentId"]),
+            "ContainerSize": NUMBER(entity["grossWeight"]),
+            "ContainerType": STRING(entity["equipmentType"]["code"]),
+            "Full_Empty": BOOLEAN(not entity["isEmpty"]),
+            "DamageRemarks": STRING(entity["damageRemarks"]),
+            "DangerousIndication": STRING(entity["dangerousEquipmentDescription"]),
+            "Description": STRING(entity["equipmentType"]["description"])
+        }
+        OUTPUT["Container"] = OUTPUT.get("Container", LIST) # Create Container list dynamically if not present
+        OUTPUT["Container"].append(CONTAINER)
+        entityUUIDs.append(container_uuid)
+
+    IF "sealIndicator" in entity:
+        seal_uuid = STRING(generateUUID())
+        SEAL = {
+            "UUID": STRING(seal_uuid),
+            "SealNumber": STRING(entity["sealIndicator"])
+        }
+        OUTPUT["Seal"] = OUTPUT.get("Seal", LIST) # Create Seal list dynamically if not present
+        OUTPUT["Seal"].append(SEAL)
+        entityUUIDs.append(seal_uuid)
+
+    IF "wagonId" in entity:
+        wagon_uuid = STRING(generateUUID())
+        WAGON = {
+            "UUID": STRING(wagon_uuid),
+            "WagonNumber": STRING(entity["wagonId"]),
+            "WagonType": STRING(entity.get("wagonType", ""))
+        }
+        OUTPUT["Wagon"] = OUTPUT.get("Wagon", LIST) # Create Wagon list dynamically if not present
+        OUTPUT["Wagon"].append(WAGON)
+        entityUUIDs.append(wagon_uuid)
+
+    RETURN entityUUIDs
+
+# Utility Functions
+FUNCTION generateUUID() -> STRING:
+    RETURN "genid-" + randomString()  # Generate a unique identifier string
+
+FUNCTION deriveMilestone(eventType) -> STRING:
+    # Define mappings for different event types
+    MILESTONE_MAPPINGS = {
+        "ARRIVAL_EVENT": "start",
+        "DEPARTURE_EVENT": "end",
+        "CARGO_EVENT_LOAD_EVENT": "load"
+        # Add additional mappings as necessary
+    }
+    RETURN MILESTONE_MAPPINGS.get(eventType, "unknown")
