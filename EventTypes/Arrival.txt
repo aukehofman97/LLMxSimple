@@ -6,35 +6,35 @@ FUNCTION transformData(input):
         "BusinessTransaction": LIST
     }
 
-    # Generate UUIDs for the main event, location, and business transaction entities
+    # Generate UUIDs for main event, location, and business transaction entities
     main_event_uuid = STRING(generateUUID())
     location_uuid = STRING(generateUUID())
     business_transaction_uuid = STRING(generateUUID())
 
-    # Process Event
+    # Process Event with explicit optional fields
     MAIN_EVENT = {
         "Event_UUID": STRING(main_event_uuid),
-        "Actual_Time": STRING(input["message"]["place"]["dateTimeType"]["dateTime"]) IF "place" in input["message"] ELSE null,
-        "milestone": STRING(deriveMilestone(input["message"]["eventType"])),
+        "Actual_Time": enforceString(input["message"]["place"]["dateTimeType"]["dateTime"]) IF "place" in input["message"] ELSE 'None',
+        "milestone": enforceString(deriveMilestone(input["message"]["eventType"])),
         "involvesLocation": STRING(location_uuid),
         "involvesBusinessTransaction": STRING(business_transaction_uuid),
-        "involvesSeal": OPTIONAL(null),     # Placeholder for Seal UUID, updated if present
-        "involvesWagon": OPTIONAL(null),    # Placeholder for Wagon UUID, updated if present
-        "involvesContainer": OPTIONAL([])   # Placeholder for Container UUIDs list, updated if present
+        "involvesSeal": OPTIONAL('None'),     # Enforced placeholder, updated if present
+        "involvesWagon": OPTIONAL('None'),    # Enforced placeholder, updated if present
+        "involvesContainer": OPTIONAL([])     # Placeholder for Container UUIDs list, updated if present
     }
 
-    # Process Location as always present, with content dynamically set from the input
+    # Process Location as always present, enforcing string type
     LOCATION = {
         "UUID": STRING(location_uuid),
         "function": STRING("Terminal"), # Example fixed function type; modify if additional logic needed
-        "locationCode": STRING(input["message"]["place"]["placeLocalization"]["terminalNode"]["nodeCode"]) IF input["message"]["place"]["placeLocalization"]["terminalNode"] ELSE null
+        "locationCode": enforceString(input["message"]["place"]["placeLocalization"]["terminalNode"]["nodeCode"]) IF input["message"]["place"]["placeLocalization"]["terminalNode"] ELSE 'None'
     }
     OUTPUT["Location"].append(LOCATION)
 
-    # Process BusinessTransaction as always present, with content dynamically set from the input
+    # Process BusinessTransaction as always present, enforcing string type
     BUSINESS_TRANSACTION = {
         "UUID": STRING(business_transaction_uuid),
-        "externalReference": STRING(input["message"]["externalConsignmentId"])
+        "externalReference": enforceString(input["message"]["externalConsignmentId"])
     }
     OUTPUT["BusinessTransaction"].append(BUSINESS_TRANSACTION)
 
@@ -70,13 +70,13 @@ FUNCTION processDynamicEntities(entity, OUTPUT):
         container_uuid = STRING(generateUUID())
         CONTAINER = {
             "UUID": container_uuid,
-            "ContainerNumber": STRING(entity["equipmentId"]),
-            "ContainerSize": NUMBER(entity["grossWeight"]),
-            "ContainerType": STRING(entity["equipmentType"]["code"]),
+            "ContainerNumber": enforceString(entity["equipmentId"]),
+            "ContainerSize": enforceNumber(entity["grossWeight"]),
+            "ContainerType": enforceString(entity["equipmentType"]["code"]),
             "Full_Empty": BOOLEAN(not entity["isEmpty"]),
-            "DamageRemarks": STRING(entity["damageRemarks"]),
-            "DangerousIndication": STRING(entity["dangerousEquipmentDescription"]),
-            "Description": STRING(entity["equipmentType"]["description"])
+            "DamageRemarks": enforceString(entity["damageRemarks"]),
+            "DangerousIndication": enforceString(entity["dangerousEquipmentDescription"]),
+            "Description": enforceString(entity["equipmentType"]["description"])
         }
         OUTPUT["Container"] = OUTPUT.get("Container", LIST) # Create Container list dynamically if not present
         OUTPUT["Container"].append(CONTAINER)
@@ -86,7 +86,7 @@ FUNCTION processDynamicEntities(entity, OUTPUT):
         seal_uuid = STRING(generateUUID())
         SEAL = {
             "UUID": STRING(seal_uuid),
-            "SealNumber": STRING(entity["sealIndicator"])
+            "SealNumber": enforceString(entity["sealIndicator"])
         }
         OUTPUT["Seal"] = OUTPUT.get("Seal", LIST) # Create Seal list dynamically if not present
         OUTPUT["Seal"].append(SEAL)
@@ -96,8 +96,8 @@ FUNCTION processDynamicEntities(entity, OUTPUT):
         wagon_uuid = STRING(generateUUID())
         WAGON = {
             "UUID": STRING(wagon_uuid),
-            "WagonNumber": STRING(entity["wagonId"]),
-            "WagonType": STRING(entity.get("wagonType", ""))
+            "WagonNumber": enforceString(entity["wagonId"]),
+            "WagonType": enforceString(entity.get("wagonType", "None"))
         }
         OUTPUT["Wagon"] = OUTPUT.get("Wagon", LIST) # Create Wagon list dynamically if not present
         OUTPUT["Wagon"].append(WAGON)
@@ -118,3 +118,10 @@ FUNCTION deriveMilestone(eventType) -> STRING:
         # Add additional mappings as necessary
     }
     RETURN MILESTONE_MAPPINGS.get(eventType, "unknown")
+
+# Utility function to enforce data types, converting null or None to 'None'
+FUNCTION enforceString(value) -> STRING:
+    RETURN STRING(value) IF value is not None ELSE 'None'
+
+FUNCTION enforceNumber(value) -> NUMBER:
+    RETURN NUMBER(value) IF value is not None ELSE 0
