@@ -3,7 +3,7 @@ FUNCTION transformData(input):
     OUTPUT = {
         "Event": [],
         "Location": [],
-        "BusinessTransaction": []
+        "BusinessTransaction": 
     }
 
     # Generate unique UUIDs for the main event, location, and business transaction entities
