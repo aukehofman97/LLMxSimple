@@ -17,7 +17,7 @@ FUNCTION transformData(input):
         "Actual_Time": STRING(input["message"]["place"]["dateTimeType"]["dateTime"]) IF "place" in input["message"] ELSE null,
         "milestone": STRING(deriveMilestone(input["message"]["eventType"])), # Custom function to map event types to milestones
         "involvesLocation": STRING(location_uuid),
-        "involvesBusinessTransaction": STRING(business_transaction_uuid)
+        "involvesBusinessTransaction": STRING(business_transaction_uuid) # Ensure it's always a STRING, not a LIST
     }
     OUTPUT["Event"].append(MAIN_EVENT)
 
