@@ -207,59 +207,82 @@ class DataMappingApp:
         st.title('Wout his sandbox, later FEDeRATED ➡️ Own Structure')
         st.write("Under Construction 👷🏼. This tab will contain functionalities for converting data from FEDeRATED to your own structure.")
         # Placeholder for the second tab functionalities
-        # Upload sections for input, vocabulary, prompt, and output nodes files
-        col1, col2 = st.columns([1, 1])
-        
-        with col1:
-            st.header("File Uploads")
+        # Check if transformation has already been performed
+        if 'raw_transformed_data' not in st.session_state:
+            # Initial state with file uploads and transformation button
+            col1, col2 = st.columns([1, 1])
             
-            # Input data file upload
-            input_file = st.file_uploader("Upload Input Data File", type=["json"], key="input_file")
-            
-            # Vocabulary file upload
-            vocab_file = st.file_uploader("Upload Vocabulary File", type=["csv"], key="vocab_file")
-            
-            # Prompt text file upload
-            prompt_file = st.file_uploader("Upload Prompt Text File", type=["txt"], key="prompt_file")
-            
-            # Output nodes file upload
-            output_nodes_file = st.file_uploader("Upload Output Nodes File", type=["json"], key="output_nodes_file")
-            
-        with col2:
-            if st.button("Transform Data"):
-                # Read files and aggregate the prompt message
-                if input_file and vocab_file and prompt_file and output_nodes_file:
-                    try:
-                        input_content = read_file(input_file)
-                        vocab_content = read_file(vocab_file)
-                        prompt_content = prompt_file.read().decode("utf-8")
-                        output_nodes_content = read_file(output_nodes_file)
-                        
-                        # Create aggregated prompt message
-                        st.session_state['messages'] = [
-                            {"role": "system", "content": prompt_content},
-                            {"role": "system", "content": f"Vocabulary for translation:\n{vocab_content}"},
-                            {"role": "system", "content": f"Output nodes structure:\n{output_nodes_content}"}
-                        ]
-                        
-                        # Convert input content to a format suitable for prompt input
-                        if isinstance(input_content, pd.DataFrame):
-                            st.session_state['messages'].append({"role": "user", "content": input_content.to_string(index=False)})
-                        else:
-                            st.session_state['messages'].append({"role": "user", "content": str(input_content)})
+            with col1:
+                st.header("File Uploads")
+                
+                # Input data file upload
+                input_file = st.file_uploader("Upload Input Data File", type=["json"], key="input_file")
+                
+                # Vocabulary file upload
+                vocab_file = st.file_uploader("Upload Vocabulary File", type=["json"], key="vocab_file")
+                
+                # Prompt text file upload
+                prompt_file = st.file_uploader("Upload Prompt Text File", type=["txt"], key="prompt_file")
+                
+                # Output nodes file upload
+                output_nodes_file = st.file_uploader("Upload Output Nodes File", type=["json"], key="output_nodes_file")
+                
+            with col2:
+                if st.button("Transform Data"):
+                    # Read files and aggregate the prompt message
+                    if input_file and vocab_file and prompt_file and output_nodes_file:
+                        try:
+                            input_content = read_file(input_file)
+                            vocab_content = read_file(vocab_file)
+                            prompt_content = prompt_file.read().decode("utf-8")
+                            output_nodes_content = read_file(output_nodes_file)
+                            
+                            # Create aggregated prompt message
+                            st.session_state['messages'] = [
+                                {"role": "system", "content": prompt_content},
+                                {"role": "system", "content": f"Vocabulary for translation:\n{vocab_content}"},
+                                {"role": "system", "content": f"Output nodes structure:\n{output_nodes_content}"}
+                            ]
+                            
+                            # Convert input content to a format suitable for prompt input
+                            if isinstance(input_content, pd.DataFrame):
+                                st.session_state['messages'].append({"role": "user", "content": input_content.to_string(index=False)})
+                            else:
+                                st.session_state['messages'].append({"role": "user", "content": str(input_content)})
 
-                        # Get response from OpenAI
-                        response = get_openai_response(client, st.session_state['messages'])
-                        st.session_state['raw_transformed_data'] = response
+                            # Get initial response from OpenAI
+                            response = get_openai_response(client, st.session_state['messages'])
+                            st.session_state['raw_transformed_data'] = response
 
-                        # Display the raw transformed data
-                        st.text_area("Raw Data Transformation Output:", response, height=500)
+                            # Display the raw transformed data
+                            st.text_area("Raw Data Transformation Output:", response, height=500)
 
-                    except Exception as e:
-                        st.error(f"An error occurred during transformation: {str(e)}")
+                        except Exception as e:
+                            st.error(f"An error occurred during transformation: {str(e)}")
+                    else:
+                        st.warning("Please upload all required files: input data, vocabulary, prompt, and output nodes.")
+        else:
+            # State after transformation: show further instruction input and update button
+            st.text_area("Raw Data Transformation Output:", st.session_state['raw_transformed_data'], height=500, disabled=True)
+            
+            # Text input for further instructions
+            further_instructions = st.text_input("Provide further instructions for the transformed data:", key="further_instructions")
+
+            if st.button("Update"):
+                if further_instructions:
+                    # Append further instructions to messages and call transformation again
+                    st.session_state['messages'].append({"role": "user", "content": further_instructions})
+                    st.session_state['messages'].append({"role": "user", "content": st.session_state['raw_transformed_data']})
+
+                    # Get updated response
+                    updated_response = get_openai_response(client, st.session_state['messages'])
+                    st.session_state['raw_transformed_data'] = updated_response
+
+                    # Display the updated data
+                    st.text_area("Updated Data Transformation Output:", updated_response, height=500)
                 else:
-                    st.warning("Please upload all required files: input data, vocabulary, prompt, and output nodes.")
-    
+                    st.warning("Please provide instructions for the update.")
+                
     def tab_three(self):
         self.setup_session_state()
 
