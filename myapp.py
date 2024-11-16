@@ -219,13 +219,13 @@ class DataMappingApp:
                 input_file = st.file_uploader("Upload Input Data File", type=["json"], key="input_file")
                 
                 # Vocabulary file upload
-                vocab_file = st.file_uploader("Upload Vocabulary File", type=["json"], key="vocab_file")
+                vocab_file = st.file_uploader("Upload Vocabulary File", type=["csv"], key="vocab_file")
                 
                 # Prompt text file upload
                 prompt_file = st.file_uploader("Upload Prompt Text File", type=["txt"], key="prompt_file")
                 
                 # Output nodes file upload
-                output_nodes_file = st.file_uploader("Upload Output Nodes File", type=["json"], key="output_nodes_file")
+                output_nodes_file = st.file_uploader("Upload Output Nodes File", type=["csv"], key="output_nodes_file")
                 
             with col2:
                 if st.button("Transform Data"):
