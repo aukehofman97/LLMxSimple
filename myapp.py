@@ -376,92 +376,97 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
-        def upload_csv_file(label, key):
-            """Function to upload a CSV file."""
-            return st.file_uploader(label, type=["csv"], key=key)
+        # Function to parse the output nodes file
+        def parse_output_nodes(uploaded_file):
+            """
+            Parse the output nodes file, splitting rows into separate cells by the ';' delimiter.
 
-        def upload_text_file(label, key):
-            """Function to upload a text file."""
-            return st.file_uploader(label, type=["txt"], key=key)
+            Parameters:
+            - uploaded_file: Uploaded file object from Streamlit.
 
-        def read_csv_file(uploaded_file):
-            """Function to read CSV content."""
+            Returns:
+            - A pandas DataFrame with the parsed output.
+            """
             try:
-                return pd.read_csv(uploaded_file)
+                # Read the content of the file
+                content = uploaded_file.getvalue().decode("utf-8")
+                
+                # Split the content into rows and columns
+                rows = [row.split(";") for row in content.splitlines()]
+                
+                # Convert to a DataFrame
+                df = pd.DataFrame(rows)
+                
+                return df
             except Exception as e:
-                st.error(f"Error reading CSV file: {e}")
+                st.error(f"Error parsing the output nodes file: {e}")
                 return None
 
-        def read_text_file(uploaded_file):
-            """Function to read text file content."""
-            try:
-                return uploaded_file.getvalue().decode("utf-8")
-            except Exception as e:
-                st.error(f"Error reading text file: {e}")
-                return None
-
-        def prepare_and_call_api(input_nodes, output_nodes, prompt_text):
-            """Prepare the prompt and call the API."""
-            # Create the prompt
-            prompt_text = f"""
-        Input Nodes:
-        {input_nodes}
-
-        Output Nodes:
-        {output_nodes}
-
-        Prompt Instructions:
-        {prompt_text}
-        """
-            # Prepare the messages for the API
-            messages = [
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt_text}
-            ]
-
-            # Call the OpenAI API
-            with st.spinner('Processing...'):
-                response = get_openai_response(client, messages)
-
-            return response
+        # Function to upload a CSV or text file
+        def upload_file(label, file_type, key):
+            """Function to upload a file."""
+            return st.file_uploader(label, type=file_type, key=key)
 
         # Streamlit Tab: Modular Upload and Matching
         st.title("Node Matching Tool")
 
         # Upload the input nodes CSV
-        uploaded_input_file = upload_csv_file("Upload Input Nodes CSV", "input_nodes_csv")
+        uploaded_input_file = upload_file("Upload Input Nodes CSV", ["csv"], "input_nodes_csv")
 
-        # Upload the output nodes CSV
-        uploaded_output_file = upload_csv_file("Upload Output Nodes CSV", "output_nodes_csv")
+        # Upload the output nodes CSV or TXT file
+        uploaded_output_file = upload_file("Upload Output Nodes File", ["csv", "txt"], "output_nodes_file")
 
         # Upload the text file with the prompt
-        uploaded_prompt_file = upload_text_file("Upload Prompt Instructions (.txt)", "prompt_txt")
+        uploaded_prompt_file = upload_file("Upload Prompt Instructions (.txt)", ["txt"], "prompt_txt")
 
         input_nodes, output_nodes, prompt_text = None, None, None
 
         # Process the uploaded input CSV
         if uploaded_input_file:
-            input_nodes = read_csv_file(uploaded_input_file)
+            input_nodes = pd.read_csv(uploaded_input_file)
             st.subheader("Input Nodes:")
             st.dataframe(input_nodes)
 
-        # Process the uploaded output CSV
+        # Process the uploaded output CSV or TXT
         if uploaded_output_file:
-            output_nodes = read_csv_file(uploaded_output_file)
-            st.subheader("Output Nodes:")
-            st.dataframe(output_nodes)
+            output_nodes = parse_output_nodes(uploaded_output_file)
+            if output_nodes is not None:
+                st.subheader("Parsed Output Nodes:")
+                st.dataframe(output_nodes)
 
         # Process the uploaded text file
         if uploaded_prompt_file:
-            prompt_text = read_text_file(uploaded_prompt_file)
-            st.subheader("Prompt Instructions:")
-            st.text_area("Prompt Content", prompt_text, height=200)
+            try:
+                prompt_text = uploaded_prompt_file.getvalue().decode("utf-8")
+                st.subheader("Prompt Instructions:")
+                st.text_area("Prompt Content", prompt_text, height=200)
+            except Exception as e:
+                st.error(f"Error reading prompt file: {e}")
 
         # Add a "Run Matching" button if all files are uploaded
         if input_nodes is not None and output_nodes is not None and prompt_text:
             if st.button("Run Matching"):
-                # Call the API with the inputs
-                response = prepare_and_call_api(input_nodes.to_string(), output_nodes.to_string(), prompt_text)
+                # Prepare the prompt
+                prompt_text_combined = f"""
+        Input Nodes:
+        {input_nodes.to_string(index=False)}
+
+        Output Nodes:
+        {output_nodes.to_string(index=False)}
+
+        Prompt Instructions:
+        {prompt_text}
+        """
+
+                # Prepare the messages for the OpenAI API
+                messages = [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt_text_combined}
+                ]
+
+                # Call the OpenAI API (replace 'get_openai_response' with your API call function)
+                with st.spinner('Processing...'):
+                    response = get_openai_response(client, messages)  # Replace 'client' with your OpenAI client
 
                 # Display the response
                 st.subheader("Matching Results:")
