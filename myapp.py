@@ -408,60 +408,60 @@ class DataMappingApp:
             return st.file_uploader(label, type=file_type, key=key)
 
         # Streamlit Tab: Modular Upload and Matching
-        st.title("Node Matching Tool")
+        st.title("Node Matching Tool - Tab Four")
 
-        # Upload the input nodes CSV
-        uploaded_input_file = upload_file("Upload Input Nodes CSV", ["csv"], "input_nodes_csv")
+        # Upload the input nodes CSV with a unique key
+        uploaded_tab_four_input_file = upload_file("Upload Tab Four Input Nodes CSV", ["csv"], "tab_four_input_nodes_csv")
 
-        # Upload the output nodes CSV or TXT file
-        uploaded_output_file = upload_file("Upload Output Nodes File", ["csv", "txt"], "output_nodes_file")
+        # Upload the output nodes CSV or TXT file with a unique key
+        uploaded_tab_four_output_file = upload_file("Upload Tab Four Output Nodes File", ["csv", "txt"], "tab_four_output_nodes_file")
 
-        # Upload the text file with the prompt
-        uploaded_prompt_file = upload_file("Upload Prompt Instructions (.txt)", ["txt"], "prompt_txt")
+        # Upload the text file with the prompt with a unique key
+        uploaded_tab_four_prompt_file = upload_file("Upload Tab Four Prompt Instructions (.txt)", ["txt"], "tab_four_prompt_txt")
 
-        input_nodes, output_nodes, prompt_text = None, None, None
+        tab_four_input_nodes, tab_four_output_nodes, tab_four_prompt_text = None, None, None
 
         # Process the uploaded input CSV
-        if uploaded_input_file:
-            input_nodes = pd.read_csv(uploaded_input_file)
-            st.subheader("Input Nodes:")
-            st.dataframe(input_nodes)
+        if uploaded_tab_four_input_file:
+            tab_four_input_nodes = pd.read_csv(uploaded_tab_four_input_file)
+            st.subheader("Tab Four Input Nodes:")
+            st.dataframe(tab_four_input_nodes)
 
         # Process the uploaded output CSV or TXT
-        if uploaded_output_file:
-            output_nodes = parse_output_nodes(uploaded_output_file)
-            if output_nodes is not None:
-                st.subheader("Parsed Output Nodes:")
-                st.dataframe(output_nodes)
+        if uploaded_tab_four_output_file:
+            tab_four_output_nodes = parse_output_nodes(uploaded_tab_four_output_file)
+            if tab_four_output_nodes is not None:
+                st.subheader("Tab Four Parsed Output Nodes:")
+                st.dataframe(tab_four_output_nodes)
 
         # Process the uploaded text file
-        if uploaded_prompt_file:
+        if uploaded_tab_four_prompt_file:
             try:
-                prompt_text = uploaded_prompt_file.getvalue().decode("utf-8")
-                st.subheader("Prompt Instructions:")
-                st.text_area("Prompt Content", prompt_text, height=200)
+                tab_four_prompt_text = uploaded_tab_four_prompt_file.getvalue().decode("utf-8")
+                st.subheader("Tab Four Prompt Instructions:")
+                st.text_area("Prompt Content", tab_four_prompt_text, height=200)
             except Exception as e:
                 st.error(f"Error reading prompt file: {e}")
 
         # Add a "Run Matching" button if all files are uploaded
-        if input_nodes is not None and output_nodes is not None and prompt_text:
-            if st.button("Run Matching"):
+        if tab_four_input_nodes is not None and tab_four_output_nodes is not None and tab_four_prompt_text:
+            if st.button("Run Tab Four Matching"):
                 # Prepare the prompt
-                prompt_text_combined = f"""
+                tab_four_prompt_text_combined = f"""
         Input Nodes:
-        {input_nodes.to_string(index=False)}
+        {tab_four_input_nodes.to_string(index=False)}
 
         Output Nodes:
-        {output_nodes.to_string(index=False)}
+        {tab_four_output_nodes.to_string(index=False)}
 
         Prompt Instructions:
-        {prompt_text}
+        {tab_four_prompt_text}
         """
 
                 # Prepare the messages for the OpenAI API
                 messages = [
                     {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt_text_combined}
+                    {"role": "user", "content": tab_four_prompt_text_combined}
                 ]
 
                 # Call the OpenAI API (replace 'get_openai_response' with your API call function)
@@ -469,5 +469,5 @@ class DataMappingApp:
                     response = get_openai_response(client, messages)  # Replace 'client' with your OpenAI client
 
                 # Display the response
-                st.subheader("Matching Results:")
+                st.subheader("Tab Four Matching Results:")
                 st.write(response)
