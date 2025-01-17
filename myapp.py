@@ -376,110 +376,92 @@ class DataMappingApp:
                         st.session_state['further_assistance_requested'] = True
                         # Implement further assistance as needed
     def tab_four(self):
-        st.title('Similarity Matching')
+        def upload_csv_file(label, key):
+            """Function to upload a CSV file."""
+            return st.file_uploader(label, type=["csv"], key=key)
 
-        # Allow users to upload a .ttl file
-        uploaded_file = st.file_uploader("Upload a Turtle (.ttl) file", type=["ttl"], key="tab4_file_uploader")
+        def upload_text_file(label, key):
+            """Function to upload a text file."""
+            return st.file_uploader(label, type=["txt"], key=key)
 
-        # Add another upload box for JSON files
-        uploaded_json_file = st.file_uploader("Upload a JSON file", type=["json"], key="tab4_json_file_uploader")
-
-        property_list = []
-        json_keys = []
-
-        if uploaded_file is not None:
-            # Read the TTL file content
-            ttl_content_bytes = uploaded_file.getvalue()
-            ttl_content = ttl_content_bytes.decode("utf-8")
-             # Display the TTL file content
-            #st.subheader("TTL File Content:")
-            #st.code(ttl_content, language='turtle')
-
+        def read_csv_file(uploaded_file):
+            """Function to read CSV content."""
             try:
-                # Call the ttl_parser function
-                concept_properties = ttl_parser(ttl_content)
-
-                # Display the results
-                st.subheader("Properties and Associated Concepts:")
-                if concept_properties:
-                    # Create a DataFrame
-                    df = pd.DataFrame(concept_properties, columns=['Concept', 'Property'])
-                    st.dataframe(df)
-
-                    # Save all the Properties in a separate list
-                    property_list = df['Property'].tolist()
-                    st.subheader("List of Properties from TTL File:")
-                    st.write(property_list)
-
-                    # Create a CSV buffer
-                    csv_buffer = io.StringIO()
-                    df.to_csv(csv_buffer, index=False)
-
-                    # Create a download button
-                    st.download_button(
-                        label="Download CSV",
-                        data=csv_buffer.getvalue(),
-                        file_name="FEDeRATED_ConceptsAndProperties.csv",
-                        mime="text/csv"
-                    )
-                else:
-                    st.write("No properties and associated concepts found.")
-
+                return pd.read_csv(uploaded_file)
             except Exception as e:
-                st.error(f"An error occurred while parsing the TTL file: {e}")
+                st.error(f"Error reading CSV file: {e}")
+                return None
 
-        if uploaded_json_file is not None:
-            # Read the JSON content
-            json_content_bytes = uploaded_json_file.getvalue()
-            json_content_str = json_content_bytes.decode('utf-8')
-
+        def read_text_file(uploaded_file):
+            """Function to read text file content."""
             try:
-                # Call the json_parser function
-                json_keys = json_parser(json_content_str)
-
-                # Print the list with the properties found
-                st.subheader("Keys in JSON File:")
-                st.write(json_keys)
+                return uploaded_file.getvalue().decode("utf-8")
             except Exception as e:
-                st.error(f"An error occurred while parsing the JSON file: {e}")
+                st.error(f"Error reading text file: {e}")
+                return None
 
-        # Check if both files are uploaded
-        if property_list and json_keys:
-            # Add a 'Match' button
-            if st.button('Match'):
-                # Prepare the prompt
-                prompt_text = f"""
-    Act as an advanced data scientist. Match the properties from 'property_list' and 'json_keys'.
+        def prepare_and_call_api(input_nodes, output_nodes, prompt_text):
+            """Prepare the prompt and call the API."""
+            # Create the prompt
+            prompt_text = f"""
+        Input Nodes:
+        {input_nodes}
 
-    Properties from TTL file (property_list):
-    {property_list}
+        Output Nodes:
+        {output_nodes}
 
-    Keys from JSON file (json_keys):
-    {json_keys}
+        Prompt Instructions:
+        {prompt_text}
+        """
+            # Prepare the messages for the API
+            messages = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt_text}
+            ]
 
-    Instructions:
-    - Return the 1:1 matches (properties that have the exact same name).
-    - Return the matches that are almost the same (slight name changes or different syntax): if a word includes 'time', 'transportmean' or 'location', it can be matched to the ttl with 'time' / 'transportmean' / 'location' included.
-    - Return the matches of which the semantics are the same, but the notation is different: e.g., datetime is the same as timeStamp, and a container is the same as equipment.
-    - Return the items in the json_keys list that you are not capable of matching.
-    
-    Constraints:
-    - the UUID from the property list is never matched.
-    
-    Output:
-    - Provide the results in a structured format, like a table, where the left side shows as column header 'FEDeRATED Concept' and the right 'Data Input'.
-    - Create a table per return, so the 1:1 matches, almost same matches, same semantics matches, no matches
-    """
+            # Call the OpenAI API
+            with st.spinner('Processing...'):
+                response = get_openai_response(client, messages)
 
-                # Prepare the messages for the OpenAI API
-                messages = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt_text}
-                ]
+            return response
 
-                # Call the OpenAI API
-                with st.spinner('Matching...'):
-                    response = get_openai_response(client, messages)
+        # Streamlit Tab: Modular Upload and Matching
+        st.title("Node Matching Tool")
+
+        # Upload the input nodes CSV
+        uploaded_input_file = upload_csv_file("Upload Input Nodes CSV", "input_nodes_csv")
+
+        # Upload the output nodes CSV
+        uploaded_output_file = upload_csv_file("Upload Output Nodes CSV", "output_nodes_csv")
+
+        # Upload the text file with the prompt
+        uploaded_prompt_file = upload_text_file("Upload Prompt Instructions (.txt)", "prompt_txt")
+
+        input_nodes, output_nodes, prompt_text = None, None, None
+
+        # Process the uploaded input CSV
+        if uploaded_input_file:
+            input_nodes = read_csv_file(uploaded_input_file)
+            st.subheader("Input Nodes:")
+            st.dataframe(input_nodes)
+
+        # Process the uploaded output CSV
+        if uploaded_output_file:
+            output_nodes = read_csv_file(uploaded_output_file)
+            st.subheader("Output Nodes:")
+            st.dataframe(output_nodes)
+
+        # Process the uploaded text file
+        if uploaded_prompt_file:
+            prompt_text = read_text_file(uploaded_prompt_file)
+            st.subheader("Prompt Instructions:")
+            st.text_area("Prompt Content", prompt_text, height=200)
+
+        # Add a "Run Matching" button if all files are uploaded
+        if input_nodes is not None and output_nodes is not None and prompt_text:
+            if st.button("Run Matching"):
+                # Call the API with the inputs
+                response = prepare_and_call_api(input_nodes.to_string(), output_nodes.to_string(), prompt_text)
 
                 # Display the response
                 st.subheader("Matching Results:")
