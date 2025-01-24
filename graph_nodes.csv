@@ -1,35 +1,161 @@
 Node,Attribute,Value
 messageType,label,messageType
-messageType,value,eventDetailed
+messageType,value,shipmentDetailed
 message,label,message
-message,value,"{'externalShipmentId': None, 'externalConsignmentId': '222', 'externalEventId': '53', 'place': {'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': None, 'roadType': None, 'terminalNode': {'nodeCode': '62105', 'nodeName': None}}, 'dateTimeType': {'dateTime': '2024-06-17T17:15:00.000+02:00', 'type': 'Actual'}}, 'externalOrderId': None, 'eventType': 'ARRIVAL_EVENT', 'equipments': None, 'transportMean': None, 'observations': None, 'externalReferences': [{'type': 'event_reference', 'id': 'E-00001', 'endPoint': None}]}"
-message.externalConsignmentId,label,externalConsignmentId
-message.externalConsignmentId,value,222
-message.externalEventId,label,externalEventId
-message.externalEventId,value,53
-message.place,label,place
-message.place,value,"{'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': None, 'roadType': None, 'terminalNode': {'nodeCode': '62105', 'nodeName': None}}, 'dateTimeType': {'dateTime': '2024-06-17T17:15:00.000+02:00', 'type': 'Actual'}}"
-message.place.placeLocalization,label,placeLocalization
-message.place.placeLocalization,value,"{'addressName': None, 'addressNumber': None, 'location': None, 'roadType': None, 'terminalNode': {'nodeCode': '62105', 'nodeName': None}}"
-message.place.placeLocalization.terminalNode,label,terminalNode
-message.place.placeLocalization.terminalNode,value,"{'nodeCode': '62105', 'nodeName': None}"
-message.place.placeLocalization.terminalNode.nodeCode,label,nodeCode
-message.place.placeLocalization.terminalNode.nodeCode,value,62105
-message.place.dateTimeType,label,dateTimeType
-message.place.dateTimeType,value,"{'dateTime': '2024-06-17T17:15:00.000+02:00', 'type': 'Actual'}"
-message.place.dateTimeType.dateTime,label,dateTime
-message.place.dateTimeType.dateTime,value,2024-06-17T17:15:00.000+02:00
-message.place.dateTimeType.type,label,type
-message.place.dateTimeType.type,value,Actual
-message.eventType,label,eventType
-message.eventType,value,ARRIVAL_EVENT
+message,value,"{'externalShipmentId': 'ES24D44444444FXHCUHCT', 'contractCarriageCondition': 'NA', 'involvedActors': [{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}], 'origin': {'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}}, 'destination': {'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}}, 'equipments': [{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}], 'documents': [], 'externalReferences': [{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}]}"
+message.externalShipmentId,label,externalShipmentId
+message.externalShipmentId,value,ES24D44444444FXHCUHCT
+message.contractCarriageCondition,label,contractCarriageCondition
+message.contractCarriageCondition,value,NA
+message.involvedActors,label,involvedActors
+message.involvedActors,value,"[{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}]"
+message.involvedActors[0],label,involvedActors[0]
+message.involvedActors[0],value,"{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}"
+message.involvedActors[0].actorId,label,actorId
+message.involvedActors[0].actorId,value,D44444444
+message.involvedActors[0].actorName,label,actorName
+message.involvedActors[0].actorName,value,Company D
+message.involvedActors[0].actorRoles,label,actorRoles
+message.involvedActors[0].actorRoles,value,['LogisticRoles_TransportOperator']
+message.involvedActors[0].actorRoles[0],label,actorRoles[0]
+message.involvedActors[0].actorRoles[0],value,LogisticRoles_TransportOperator
+message.involvedActors[0].actorEmail,label,actorEmail
+message.involvedActors[0].actorEmail,value,Simple4shipment@gmail.com
+message.involvedActors[1],label,involvedActors[1]
+message.involvedActors[1],value,"{'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}"
+message.involvedActors[1].actorId,label,actorId
+message.involvedActors[1].actorId,value,A11111111
+message.involvedActors[1].actorName,label,actorName
+message.involvedActors[1].actorName,value,Company B
+message.involvedActors[1].actorRoles,label,actorRoles
+message.involvedActors[1].actorRoles,value,['LogisticRoles_Consignor']
+message.involvedActors[1].actorRoles[0],label,actorRoles[0]
+message.involvedActors[1].actorRoles[0],value,LogisticRoles_Consignor
+message.involvedActors[2],label,involvedActors[2]
+message.involvedActors[2],value,"{'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}"
+message.involvedActors[2].actorId,label,actorId
+message.involvedActors[2].actorId,value,B22222222
+message.involvedActors[2].actorName,label,actorName
+message.involvedActors[2].actorName,value,Company A
+message.involvedActors[2].actorRoles,label,actorRoles
+message.involvedActors[2].actorRoles,value,['LogisticRoles_Consignee']
+message.involvedActors[2].actorRoles[0],label,actorRoles[0]
+message.involvedActors[2].actorRoles[0],value,LogisticRoles_Consignee
+message.involvedActors[2].actorEmail,label,actorEmail
+message.involvedActors[2].actorEmail,value,Juavie10@gmail.com
+message.involvedActors[3],label,involvedActors[3]
+message.involvedActors[3],value,"{'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}"
+message.involvedActors[3].actorId,label,actorId
+message.involvedActors[3].actorId,value,C33333333
+message.involvedActors[3].actorName,label,actorName
+message.involvedActors[3].actorName,value,Company C
+message.involvedActors[3].actorRoles,label,actorRoles
+message.involvedActors[3].actorRoles,value,['LogisticRoles_DispatchParty']
+message.involvedActors[3].actorRoles[0],label,actorRoles[0]
+message.involvedActors[3].actorRoles[0],value,LogisticRoles_DispatchParty
+message.origin,label,origin
+message.origin,value,"{'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}}"
+message.origin.placeLocalization,label,placeLocalization
+message.origin.placeLocalization,value,"{'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}"
+message.origin.placeLocalization.location,label,location
+message.origin.placeLocalization.location,value,"{'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}"
+message.origin.placeLocalization.location.city,label,city
+message.origin.placeLocalization.location.city,value,"{'name': None, 'cityLoCode': 'ES MAD'}"
+message.origin.placeLocalization.location.city.cityLoCode,label,cityLoCode
+message.origin.placeLocalization.location.city.cityLoCode,value,ES MAD
+message.origin.placeLocalization.location.country,label,country
+message.origin.placeLocalization.location.country,value,"{'name': None, 'unLoCode': 'ES'}"
+message.origin.placeLocalization.location.country.unLoCode,label,unLoCode
+message.origin.placeLocalization.location.country.unLoCode,value,ES
+message.origin.dateTimeType,label,dateTimeType
+message.origin.dateTimeType,value,"{'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}"
+message.origin.dateTimeType.dateTime,label,dateTime
+message.origin.dateTimeType.dateTime,value,2024-09-16T11:46:45.000+02:00
+message.origin.dateTimeType.type,label,type
+message.origin.dateTimeType.type,value,Estimated
+message.destination,label,destination
+message.destination,value,"{'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}}"
+message.destination.placeLocalization,label,placeLocalization
+message.destination.placeLocalization,value,"{'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}"
+message.destination.placeLocalization.location,label,location
+message.destination.placeLocalization.location,value,"{'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}"
+message.destination.placeLocalization.location.city,label,city
+message.destination.placeLocalization.location.city,value,"{'name': None, 'cityLoCode': 'ES SVQ'}"
+message.destination.placeLocalization.location.city.cityLoCode,label,cityLoCode
+message.destination.placeLocalization.location.city.cityLoCode,value,ES SVQ
+message.destination.placeLocalization.location.country,label,country
+message.destination.placeLocalization.location.country,value,"{'name': None, 'unLoCode': 'ES'}"
+message.destination.placeLocalization.location.country.unLoCode,label,unLoCode
+message.destination.placeLocalization.location.country.unLoCode,value,ES
+message.destination.dateTimeType,label,dateTimeType
+message.destination.dateTimeType,value,"{'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}"
+message.destination.dateTimeType.dateTime,label,dateTime
+message.destination.dateTimeType.dateTime,value,2024-09-23T13:15:48.000+02:00
+message.destination.dateTimeType.type,label,type
+message.destination.dateTimeType.type,value,Estimated
+message.equipments,label,equipments
+message.equipments,value,"[{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}]"
+message.equipments[0],label,equipments[0]
+message.equipments[0],value,"{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}"
+message.equipments[0].equipmentId,label,equipmentId
+message.equipments[0].equipmentId,value,JSVU12453627
+message.equipments[0].equipmentType,label,equipmentType
+message.equipments[0].equipmentType,value,"{'code': 'CN', 'description': None}"
+message.equipments[0].equipmentType.code,label,code
+message.equipments[0].equipmentType.code,value,CN
+message.equipments[0].codeITU,label,codeITU
+message.equipments[0].codeITU,value,40
+message.equipments[0].grossWeight,label,grossWeight
+message.equipments[0].grossWeight,value,42000
+message.equipments[0].isEmpty,label,isEmpty
+message.equipments[0].isEmpty,value,True
+message.equipments[0].sealIndicator,label,sealIndicator
+message.equipments[0].sealIndicator,value,Precxx3234
+message.equipments[0].goods,label,goods
+message.equipments[0].goods,value,"[{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}]"
+message.equipments[0].goods[0],label,goods[0]
+message.equipments[0].goods[0],value,"{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}"
+message.equipments[0].goods[0].package,label,package
+message.equipments[0].goods[0].package,value,"{'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}"
+message.equipments[0].goods[0].package.numberOfPackages,label,numberOfPackages
+message.equipments[0].goods[0].package.numberOfPackages,value,26
+message.equipments[0].goods[0].package.shippingMark,label,shippingMark
+message.equipments[0].goods[0].package.shippingMark,value,bridgestones
+message.equipments[0].goods[0].goodTypeCode,label,goodTypeCode
+message.equipments[0].goods[0].goodTypeCode,value,tires
+message.equipments[0].goods[0].goodDescription,label,goodDescription
+message.equipments[0].goods[0].goodDescription,value,finished rubber tires
+message.equipments[0].goods[0].cargoType,label,cargoType
+message.equipments[0].goods[0].cargoType,value,Pallets
+message.equipments[0].goods[0].idNumberList,label,idNumberList
+message.equipments[0].goods[0].idNumberList,value,['21321']
+message.equipments[0].goods[0].idNumberList[0],label,idNumberList[0]
+message.equipments[0].goods[0].idNumberList[0],value,21321
+message.equipments[0].goods[0].goodWeight,label,goodWeight
+message.equipments[0].goods[0].goodWeight,value,0.0
+message.equipments[0].goods[0].goodGrossMass,label,goodGrossMass
+message.equipments[0].goods[0].goodGrossMass,value,23000.0
+message.equipments[0].goods[0].goodSize,label,goodSize
+message.equipments[0].goods[0].goodSize,value,12
+message.equipments[0].goods[0].dangerousGoods,label,dangerousGoods
+message.equipments[0].goods[0].dangerousGoods,value,False
+message.equipments[0].damageRemarks,label,damageRemarks
+message.equipments[0].damageRemarks,value,string
+message.equipments[0].city,label,city
+message.equipments[0].city,value,"{'name': None, 'cityLoCode': 'ES MAD'}"
+message.equipments[0].city.cityLoCode,label,cityLoCode
+message.equipments[0].city.cityLoCode,value,ES MAD
+message.equipments[0].dangerousEquipment,label,dangerousEquipment
+message.equipments[0].dangerousEquipment,value,False
+message.documents,label,documents
+message.documents,value,[]
 message.externalReferences,label,externalReferences
-message.externalReferences,value,"[{'type': 'event_reference', 'id': 'E-00001', 'endPoint': None}]"
-message.externalReferences[0],label,message.externalReferences[0]
-message.externalReferences[0],value,"{'type': 'event_reference', 'id': 'E-00001', 'endPoint': None}"
+message.externalReferences,value,"[{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}]"
+message.externalReferences[0],label,externalReferences[0]
+message.externalReferences[0],value,"{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}"
 message.externalReferences[0].type,label,type
-message.externalReferences[0].type,value,event_reference
+message.externalReferences[0].type,value,shipment_reference
 message.externalReferences[0].id,label,id
-message.externalReferences[0].id,value,E-00001
+message.externalReferences[0].id,value,BL112233
 operationType,label,operationType
 operationType,value,CREATE

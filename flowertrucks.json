@@ -1,0 +1,155 @@
+{
+    "messageType": "Transport Opdracht",
+    "message": {
+        "shipment": {
+            "shipper": "Asian Export Food",
+            "loadingLocation": {
+                "plaats": "Kampen",
+                "land": "Nederland"
+            },
+            "loadingDate": "17-01-2025"
+        },
+        "goods": [
+            {
+                "kenmerk": "00803055558",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 1,
+                "noOfColli": 23,
+                "unloadLocation": {
+                    "straat": "Masvagen 2",
+                    "naam": "AX Utveckling AB",
+                    "postcode": "22100",
+                    "plaats": "MARIEHAMN",
+                    "land": "FIN"
+                }
+            },
+            {
+                "kenmerk": "00803055544",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 1,
+                "noOfColli": 16,
+                "unloadLocation": {
+                    "straat": "Hämeenkatu 7",
+                    "naam": "Nurmi Dao Oy",
+                    "postcode": "20500",
+                    "plaats": "TURKU",
+                    "land": "FIN"
+                }
+            },
+            {
+                "kenmerk": "0080305561",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 1,
+                "noOfColli": 1,
+                "unloadLocation": {
+                    "straat": "Kuunsade 10b 43",
+                    "naam": "Golden Food Oy",
+                    "postcode": "02210",
+                    "plaats": "HELSINKI",
+                    "land": "FIN"
+                }
+            },
+            {
+                "kenmerk": "00803055599",
+                "actie": "Lossen",
+                "euroDV": 2,
+                "blokDV": 3,
+                "noOfColli": 50,
+                "unloadLocation": {
+                    "straat": "Gatan 5",
+                    "naam": "ABC Logistics",
+                    "postcode": "11450",
+                    "plaats": "STOCKHOLM",
+                    "land": "SWE"
+                }
+            },
+            {
+                "kenmerk": "0080305560",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 2,
+                "noOfColli": 12,
+                "unloadLocation": {
+                    "straat": "Storgata 15",
+                    "naam": "Nordic Foods",
+                    "postcode": "0161",
+                    "plaats": "OSLO",
+                    "land": "NOR"
+                }
+            },
+            {
+                "kenmerk": "0080305562",
+                "actie": "Lossen",
+                "euroDV": 2,
+                "blokDV": 3,
+                "noOfColli": 25,
+                "unloadLocation": {
+                    "straat": "Skolgatan 12",
+                    "naam": "Food Service AB",
+                    "postcode": "11850",
+                    "plaats": "GOTHENBURG",
+                    "land": "SWE"
+                }
+            },
+            {
+                "kenmerk": "0080305563",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 2,
+                "noOfColli": 10,
+                "unloadLocation": {
+                    "straat": "Bryggen 3",
+                    "naam": "North Sea Logistics",
+                    "postcode": "5003",
+                    "plaats": "BERGEN",
+                    "land": "NOR"
+                }
+            },
+            {
+                "kenmerk": "0080305564",
+                "actie": "Lossen",
+                "euroDV": 2,
+                "blokDV": 1,
+                "noOfColli": 8,
+                "unloadLocation": {
+                    "straat": "Tallinn Road 8",
+                    "naam": "Baltic Foods",
+                    "postcode": "10111",
+                    "plaats": "TALLINN",
+                    "land": "EST"
+                }
+            },
+            {
+                "kenmerk": "0080305565",
+                "actie": "Lossen",
+                "euroDV": 2,
+                "blokDV": 3,
+                "noOfColli": 18,
+                "unloadLocation": {
+                    "straat": "Main Street 22",
+                    "naam": "Global Goods Inc",
+                    "postcode": "8000",
+                    "plaats": "AARHUS",
+                    "land": "DNK"
+                }
+            },
+            {
+                "kenmerk": "0080305566",
+                "actie": "Lossen",
+                "euroDV": 1,
+                "blokDV": 2,
+                "noOfColli": 15,
+                "unloadLocation": {
+                    "straat": "Food Street 45",
+                    "naam": "ScandiFoods AS",
+                    "postcode": "3010",
+                    "plaats": "DRAMMEN",
+                    "land": "NOR"
+                }
+            }
+        ]
+    }
+}
