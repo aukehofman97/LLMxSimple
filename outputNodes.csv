@@ -1,0 +1,24 @@
+Concept;;;Property;;;;;;;;;;;;;
+Container;UUID;equipmentTypeCode;containerNumber;containerSize;containerType;sealIndicator;isEmpty;isFull;equipmentProperties;equipmentCategoryCode;equipmentContainerITUCode;hasNumberOfCollies;;;;
+Goods;UUID;goodsTypeCode;typeOfCargo;natureOfCargo;PackageTypeNumericCode;packageCode;packageTypeName;shippingMarks;numberOfTEU;numberofPackages;goodsDescription;goodsNumbers;;;;
+BusinessActivity;UUID;hasDocumentType;documentID;documentVersion;hasMRN_Number;;;;;;;;;;;
+Vessel;UUID;vesselName;transportMeansMode;vesselType;voyageNumber;vesselId;;;;;;;;;;
+Truck;UUID;hasVIN;hasTransportmeansNationality;transportMeansMode;truckLicensePlate;;;;;;;;;;;
+Wagon;UUID;wagonBrakeType;wagonBrakeWeight;wagonMaximumSpeed;wagonNrAxel;wagonId;;;;;;;;;;
+DangerousGoods;UUID;hazardouseMaterialDetail;UNDGCode;dangerousGoodsRegulationCode;hazmatUNCode;packageLevelType;packageProperties;packageTypeNumericCode;packagingDangerLevelCode;hasFlashpointTemperature;productName;productProperties;properShippingName;hasDangerousGoodsRegulationCode;;
+Locomotive;UUID;locomotiveBrakeType;locomotiveBrakeWeight;locomotiveDriverIndication;locomotiveTractionType;locomotiveTypeNumber;transportMeansMode;locomotiveId;;;;;;;;
+Trailer;UUID;trailerLicensePlate;trailerId;;;;;;;;;;;;;
+Seal;UUID;sealProperties;sealQuantity;hasSealConditionCode;;;;;;;;;;;;
+Commodity;UUID;bulkVolume;dryBulk;;;;;;;;;;;;;
+ReeferDetails;UUID;ReferenceUUID;cargoMinimumTemperature;cargoTemperature;cargoMaximumTemperature;;;;;;;;;;;
+Damage;UUID;ReferenceUUID;damageRemarks;;;;;;;;;;;;;
+Dimensions;UUID;ReferenceUUID;grossWeight;cargoWeight;cargoTareWeight;cargoMaximumVolume;cargoMaxSize;cargoMinimumSize;cargoMinimumVolume;hasGrossMass;tareWeight;netMass;size;;;
+Load;UUID;ReferenceUUID;netLoad;totalLoadCapacity;loadCapacity;transportMeansProperties;;;;;;;;;;
+Location;UUID;elevation;latitude;longitude;name;country;city;InfrastructuralFunctionProperty;TrajectoryProperty;berthCode;locode;terminalName;address;addressCountry;addressNumber;zipCode
+Organisation;UUID;legalPersonName;legalPersonCountry;actorId;;;;;;;;;;;;
+ActorRoles;SH:shipper;FW:forwarder;CA:carrier;LA:liner-agent;CE:consignee;CU:Customs;DE:Depositary;DP:Depositor;DI:dispatch party;;;;;;;
+LocationRoles;PLA:place of acceptance;PLD:place of delivery;POL:port of loading;POD:port of discharge;PU:pick up location;DE:delivery location;;;;;;;;;;
+DigitalRoles;WE: website;EM:email;PH:phone number;;;;;;;;;;;;;
+DigitalContact;digitalContactId;;;;;;;;;;;;;;;
+Person;Name;;;;;;;;;;;;;;;
+PersonRoles;DR:driver;EM:employee;CT:contact person;;;;;;;;;;;;;
