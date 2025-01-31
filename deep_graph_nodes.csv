@@ -1,0 +1,211 @@
+Node,Attribute,Value
+messageType,label,messageType
+messageType,value,Transport Opdracht
+message.shipment.shipper,label,shipper
+message.shipment.shipper,value,Asian Export Food
+message.shipment.loadingLocation.plaats,label,plaats
+message.shipment.loadingLocation.plaats,value,Kampen
+message.shipment.loadingLocation.land,label,land
+message.shipment.loadingLocation.land,value,Nederland
+message.shipment.loadingDate,label,loadingDate
+message.shipment.loadingDate,value,17-01-2025
+message.goods[0].kenmerk,label,kenmerk
+message.goods[0].kenmerk,value,00803055558
+message.goods[0].actie,label,actie
+message.goods[0].actie,value,Lossen
+message.goods[0].euroDV,label,euroDV
+message.goods[0].euroDV,value,1
+message.goods[0].blokDV,label,blokDV
+message.goods[0].blokDV,value,1
+message.goods[0].noOfColli,label,noOfColli
+message.goods[0].noOfColli,value,23
+message.goods[0].unloadLocation.straat,label,straat
+message.goods[0].unloadLocation.straat,value,Masvagen 2
+message.goods[0].unloadLocation.naam,label,naam
+message.goods[0].unloadLocation.naam,value,AX Utveckling AB
+message.goods[0].unloadLocation.postcode,label,postcode
+message.goods[0].unloadLocation.postcode,value,22100
+message.goods[0].unloadLocation.plaats,label,plaats
+message.goods[0].unloadLocation.plaats,value,MARIEHAMN
+message.goods[0].unloadLocation.land,label,land
+message.goods[0].unloadLocation.land,value,FIN
+message.goods[1].kenmerk,label,kenmerk
+message.goods[1].kenmerk,value,00803055544
+message.goods[1].actie,label,actie
+message.goods[1].actie,value,Lossen
+message.goods[1].euroDV,label,euroDV
+message.goods[1].euroDV,value,1
+message.goods[1].blokDV,label,blokDV
+message.goods[1].blokDV,value,1
+message.goods[1].noOfColli,label,noOfColli
+message.goods[1].noOfColli,value,16
+message.goods[1].unloadLocation.straat,label,straat
+message.goods[1].unloadLocation.straat,value,Hämeenkatu 7
+message.goods[1].unloadLocation.naam,label,naam
+message.goods[1].unloadLocation.naam,value,Nurmi Dao Oy
+message.goods[1].unloadLocation.postcode,label,postcode
+message.goods[1].unloadLocation.postcode,value,20500
+message.goods[1].unloadLocation.plaats,label,plaats
+message.goods[1].unloadLocation.plaats,value,TURKU
+message.goods[1].unloadLocation.land,label,land
+message.goods[1].unloadLocation.land,value,FIN
+message.goods[2].kenmerk,label,kenmerk
+message.goods[2].kenmerk,value,0080305561
+message.goods[2].actie,label,actie
+message.goods[2].actie,value,Lossen
+message.goods[2].euroDV,label,euroDV
+message.goods[2].euroDV,value,1
+message.goods[2].blokDV,label,blokDV
+message.goods[2].blokDV,value,1
+message.goods[2].noOfColli,label,noOfColli
+message.goods[2].noOfColli,value,1
+message.goods[2].unloadLocation.straat,label,straat
+message.goods[2].unloadLocation.straat,value,Kuunsade 10b 43
+message.goods[2].unloadLocation.naam,label,naam
+message.goods[2].unloadLocation.naam,value,Golden Food Oy
+message.goods[2].unloadLocation.postcode,label,postcode
+message.goods[2].unloadLocation.postcode,value,02210
+message.goods[2].unloadLocation.plaats,label,plaats
+message.goods[2].unloadLocation.plaats,value,HELSINKI
+message.goods[2].unloadLocation.land,label,land
+message.goods[2].unloadLocation.land,value,FIN
+message.goods[3].kenmerk,label,kenmerk
+message.goods[3].kenmerk,value,00803055599
+message.goods[3].actie,label,actie
+message.goods[3].actie,value,Lossen
+message.goods[3].euroDV,label,euroDV
+message.goods[3].euroDV,value,2
+message.goods[3].blokDV,label,blokDV
+message.goods[3].blokDV,value,3
+message.goods[3].noOfColli,label,noOfColli
+message.goods[3].noOfColli,value,50
+message.goods[3].unloadLocation.straat,label,straat
+message.goods[3].unloadLocation.straat,value,Gatan 5
+message.goods[3].unloadLocation.naam,label,naam
+message.goods[3].unloadLocation.naam,value,ABC Logistics
+message.goods[3].unloadLocation.postcode,label,postcode
+message.goods[3].unloadLocation.postcode,value,11450
+message.goods[3].unloadLocation.plaats,label,plaats
+message.goods[3].unloadLocation.plaats,value,STOCKHOLM
+message.goods[3].unloadLocation.land,label,land
+message.goods[3].unloadLocation.land,value,SWE
+message.goods[4].kenmerk,label,kenmerk
+message.goods[4].kenmerk,value,0080305560
+message.goods[4].actie,label,actie
+message.goods[4].actie,value,Lossen
+message.goods[4].euroDV,label,euroDV
+message.goods[4].euroDV,value,1
+message.goods[4].blokDV,label,blokDV
+message.goods[4].blokDV,value,2
+message.goods[4].noOfColli,label,noOfColli
+message.goods[4].noOfColli,value,12
+message.goods[4].unloadLocation.straat,label,straat
+message.goods[4].unloadLocation.straat,value,Storgata 15
+message.goods[4].unloadLocation.naam,label,naam
+message.goods[4].unloadLocation.naam,value,Nordic Foods
+message.goods[4].unloadLocation.postcode,label,postcode
+message.goods[4].unloadLocation.postcode,value,0161
+message.goods[4].unloadLocation.plaats,label,plaats
+message.goods[4].unloadLocation.plaats,value,OSLO
+message.goods[4].unloadLocation.land,label,land
+message.goods[4].unloadLocation.land,value,NOR
+message.goods[5].kenmerk,label,kenmerk
+message.goods[5].kenmerk,value,0080305562
+message.goods[5].actie,label,actie
+message.goods[5].actie,value,Lossen
+message.goods[5].euroDV,label,euroDV
+message.goods[5].euroDV,value,2
+message.goods[5].blokDV,label,blokDV
+message.goods[5].blokDV,value,3
+message.goods[5].noOfColli,label,noOfColli
+message.goods[5].noOfColli,value,25
+message.goods[5].unloadLocation.straat,label,straat
+message.goods[5].unloadLocation.straat,value,Skolgatan 12
+message.goods[5].unloadLocation.naam,label,naam
+message.goods[5].unloadLocation.naam,value,Food Service AB
+message.goods[5].unloadLocation.postcode,label,postcode
+message.goods[5].unloadLocation.postcode,value,11850
+message.goods[5].unloadLocation.plaats,label,plaats
+message.goods[5].unloadLocation.plaats,value,GOTHENBURG
+message.goods[5].unloadLocation.land,label,land
+message.goods[5].unloadLocation.land,value,SWE
+message.goods[6].kenmerk,label,kenmerk
+message.goods[6].kenmerk,value,0080305563
+message.goods[6].actie,label,actie
+message.goods[6].actie,value,Lossen
+message.goods[6].euroDV,label,euroDV
+message.goods[6].euroDV,value,1
+message.goods[6].blokDV,label,blokDV
+message.goods[6].blokDV,value,2
+message.goods[6].noOfColli,label,noOfColli
+message.goods[6].noOfColli,value,10
+message.goods[6].unloadLocation.straat,label,straat
+message.goods[6].unloadLocation.straat,value,Bryggen 3
+message.goods[6].unloadLocation.naam,label,naam
+message.goods[6].unloadLocation.naam,value,North Sea Logistics
+message.goods[6].unloadLocation.postcode,label,postcode
+message.goods[6].unloadLocation.postcode,value,5003
+message.goods[6].unloadLocation.plaats,label,plaats
+message.goods[6].unloadLocation.plaats,value,BERGEN
+message.goods[6].unloadLocation.land,label,land
+message.goods[6].unloadLocation.land,value,NOR
+message.goods[7].kenmerk,label,kenmerk
+message.goods[7].kenmerk,value,0080305564
+message.goods[7].actie,label,actie
+message.goods[7].actie,value,Lossen
+message.goods[7].euroDV,label,euroDV
+message.goods[7].euroDV,value,2
+message.goods[7].blokDV,label,blokDV
+message.goods[7].blokDV,value,1
+message.goods[7].noOfColli,label,noOfColli
+message.goods[7].noOfColli,value,8
+message.goods[7].unloadLocation.straat,label,straat
+message.goods[7].unloadLocation.straat,value,Tallinn Road 8
+message.goods[7].unloadLocation.naam,label,naam
+message.goods[7].unloadLocation.naam,value,Baltic Foods
+message.goods[7].unloadLocation.postcode,label,postcode
+message.goods[7].unloadLocation.postcode,value,10111
+message.goods[7].unloadLocation.plaats,label,plaats
+message.goods[7].unloadLocation.plaats,value,TALLINN
+message.goods[7].unloadLocation.land,label,land
+message.goods[7].unloadLocation.land,value,EST
+message.goods[8].kenmerk,label,kenmerk
+message.goods[8].kenmerk,value,0080305565
+message.goods[8].actie,label,actie
+message.goods[8].actie,value,Lossen
+message.goods[8].euroDV,label,euroDV
+message.goods[8].euroDV,value,2
+message.goods[8].blokDV,label,blokDV
+message.goods[8].blokDV,value,3
+message.goods[8].noOfColli,label,noOfColli
+message.goods[8].noOfColli,value,18
+message.goods[8].unloadLocation.straat,label,straat
+message.goods[8].unloadLocation.straat,value,Main Street 22
+message.goods[8].unloadLocation.naam,label,naam
+message.goods[8].unloadLocation.naam,value,Global Goods Inc
+message.goods[8].unloadLocation.postcode,label,postcode
+message.goods[8].unloadLocation.postcode,value,8000
+message.goods[8].unloadLocation.plaats,label,plaats
+message.goods[8].unloadLocation.plaats,value,AARHUS
+message.goods[8].unloadLocation.land,label,land
+message.goods[8].unloadLocation.land,value,DNK
+message.goods[9].kenmerk,label,kenmerk
+message.goods[9].kenmerk,value,0080305566
+message.goods[9].actie,label,actie
+message.goods[9].actie,value,Lossen
+message.goods[9].euroDV,label,euroDV
+message.goods[9].euroDV,value,1
+message.goods[9].blokDV,label,blokDV
+message.goods[9].blokDV,value,2
+message.goods[9].noOfColli,label,noOfColli
+message.goods[9].noOfColli,value,15
+message.goods[9].unloadLocation.straat,label,straat
+message.goods[9].unloadLocation.straat,value,Food Street 45
+message.goods[9].unloadLocation.naam,label,naam
+message.goods[9].unloadLocation.naam,value,ScandiFoods AS
+message.goods[9].unloadLocation.postcode,label,postcode
+message.goods[9].unloadLocation.postcode,value,3010
+message.goods[9].unloadLocation.plaats,label,plaats
+message.goods[9].unloadLocation.plaats,value,DRAMMEN
+message.goods[9].unloadLocation.land,label,land
+message.goods[9].unloadLocation.land,value,NOR

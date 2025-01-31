@@ -1,161 +1,259 @@
 Node,Attribute,Value
 messageType,label,messageType
-messageType,value,shipmentDetailed
+messageType,value,Transport Opdracht
 message,label,message
-message,value,"{'externalShipmentId': 'ES24D44444444FXHCUHCT', 'contractCarriageCondition': 'NA', 'involvedActors': [{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}], 'origin': {'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}}, 'destination': {'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}}, 'equipments': [{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}], 'documents': [], 'externalReferences': [{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}]}"
-message.externalShipmentId,label,externalShipmentId
-message.externalShipmentId,value,ES24D44444444FXHCUHCT
-message.contractCarriageCondition,label,contractCarriageCondition
-message.contractCarriageCondition,value,NA
-message.involvedActors,label,involvedActors
-message.involvedActors,value,"[{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}, {'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}]"
-message.involvedActors[0],label,involvedActors[0]
-message.involvedActors[0],value,"{'actorAddress': None, 'actorId': 'D44444444', 'actorName': 'Company D', 'actorRoles': ['LogisticRoles_TransportOperator'], 'actorWebSite': None, 'actorEmail': 'Simple4shipment@gmail.com', 'actorPhoneNumber': None}"
-message.involvedActors[0].actorId,label,actorId
-message.involvedActors[0].actorId,value,D44444444
-message.involvedActors[0].actorName,label,actorName
-message.involvedActors[0].actorName,value,Company D
-message.involvedActors[0].actorRoles,label,actorRoles
-message.involvedActors[0].actorRoles,value,['LogisticRoles_TransportOperator']
-message.involvedActors[0].actorRoles[0],label,actorRoles[0]
-message.involvedActors[0].actorRoles[0],value,LogisticRoles_TransportOperator
-message.involvedActors[0].actorEmail,label,actorEmail
-message.involvedActors[0].actorEmail,value,Simple4shipment@gmail.com
-message.involvedActors[1],label,involvedActors[1]
-message.involvedActors[1],value,"{'actorAddress': None, 'actorId': 'A11111111', 'actorName': 'Company B', 'actorRoles': ['LogisticRoles_Consignor'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}"
-message.involvedActors[1].actorId,label,actorId
-message.involvedActors[1].actorId,value,A11111111
-message.involvedActors[1].actorName,label,actorName
-message.involvedActors[1].actorName,value,Company B
-message.involvedActors[1].actorRoles,label,actorRoles
-message.involvedActors[1].actorRoles,value,['LogisticRoles_Consignor']
-message.involvedActors[1].actorRoles[0],label,actorRoles[0]
-message.involvedActors[1].actorRoles[0],value,LogisticRoles_Consignor
-message.involvedActors[2],label,involvedActors[2]
-message.involvedActors[2],value,"{'actorAddress': None, 'actorId': 'B22222222', 'actorName': 'Company A', 'actorRoles': ['LogisticRoles_Consignee'], 'actorWebSite': None, 'actorEmail': 'Juavie10@gmail.com', 'actorPhoneNumber': None}"
-message.involvedActors[2].actorId,label,actorId
-message.involvedActors[2].actorId,value,B22222222
-message.involvedActors[2].actorName,label,actorName
-message.involvedActors[2].actorName,value,Company A
-message.involvedActors[2].actorRoles,label,actorRoles
-message.involvedActors[2].actorRoles,value,['LogisticRoles_Consignee']
-message.involvedActors[2].actorRoles[0],label,actorRoles[0]
-message.involvedActors[2].actorRoles[0],value,LogisticRoles_Consignee
-message.involvedActors[2].actorEmail,label,actorEmail
-message.involvedActors[2].actorEmail,value,Juavie10@gmail.com
-message.involvedActors[3],label,involvedActors[3]
-message.involvedActors[3],value,"{'actorAddress': None, 'actorId': 'C33333333', 'actorName': 'Company C', 'actorRoles': ['LogisticRoles_DispatchParty'], 'actorWebSite': None, 'actorEmail': None, 'actorPhoneNumber': None}"
-message.involvedActors[3].actorId,label,actorId
-message.involvedActors[3].actorId,value,C33333333
-message.involvedActors[3].actorName,label,actorName
-message.involvedActors[3].actorName,value,Company C
-message.involvedActors[3].actorRoles,label,actorRoles
-message.involvedActors[3].actorRoles,value,['LogisticRoles_DispatchParty']
-message.involvedActors[3].actorRoles[0],label,actorRoles[0]
-message.involvedActors[3].actorRoles[0],value,LogisticRoles_DispatchParty
-message.origin,label,origin
-message.origin,value,"{'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}}"
-message.origin.placeLocalization,label,placeLocalization
-message.origin.placeLocalization,value,"{'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}"
-message.origin.placeLocalization.location,label,location
-message.origin.placeLocalization.location,value,"{'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': {'name': None, 'unLoCode': 'ES'}}"
-message.origin.placeLocalization.location.city,label,city
-message.origin.placeLocalization.location.city,value,"{'name': None, 'cityLoCode': 'ES MAD'}"
-message.origin.placeLocalization.location.city.cityLoCode,label,cityLoCode
-message.origin.placeLocalization.location.city.cityLoCode,value,ES MAD
-message.origin.placeLocalization.location.country,label,country
-message.origin.placeLocalization.location.country,value,"{'name': None, 'unLoCode': 'ES'}"
-message.origin.placeLocalization.location.country.unLoCode,label,unLoCode
-message.origin.placeLocalization.location.country.unLoCode,value,ES
-message.origin.dateTimeType,label,dateTimeType
-message.origin.dateTimeType,value,"{'dateTime': '2024-09-16T11:46:45.000+02:00', 'type': 'Estimated'}"
-message.origin.dateTimeType.dateTime,label,dateTime
-message.origin.dateTimeType.dateTime,value,2024-09-16T11:46:45.000+02:00
-message.origin.dateTimeType.type,label,type
-message.origin.dateTimeType.type,value,Estimated
-message.destination,label,destination
-message.destination,value,"{'placeLocalization': {'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}, 'dateTimeType': {'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}}"
-message.destination.placeLocalization,label,placeLocalization
-message.destination.placeLocalization,value,"{'addressName': None, 'addressNumber': None, 'location': {'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}, 'roadType': None, 'terminalNode': None}"
-message.destination.placeLocalization.location,label,location
-message.destination.placeLocalization.location,value,"{'zipCode': None, 'city': {'name': None, 'cityLoCode': 'ES SVQ'}, 'country': {'name': None, 'unLoCode': 'ES'}}"
-message.destination.placeLocalization.location.city,label,city
-message.destination.placeLocalization.location.city,value,"{'name': None, 'cityLoCode': 'ES SVQ'}"
-message.destination.placeLocalization.location.city.cityLoCode,label,cityLoCode
-message.destination.placeLocalization.location.city.cityLoCode,value,ES SVQ
-message.destination.placeLocalization.location.country,label,country
-message.destination.placeLocalization.location.country,value,"{'name': None, 'unLoCode': 'ES'}"
-message.destination.placeLocalization.location.country.unLoCode,label,unLoCode
-message.destination.placeLocalization.location.country.unLoCode,value,ES
-message.destination.dateTimeType,label,dateTimeType
-message.destination.dateTimeType,value,"{'dateTime': '2024-09-23T13:15:48.000+02:00', 'type': 'Estimated'}"
-message.destination.dateTimeType.dateTime,label,dateTime
-message.destination.dateTimeType.dateTime,value,2024-09-23T13:15:48.000+02:00
-message.destination.dateTimeType.type,label,type
-message.destination.dateTimeType.type,value,Estimated
-message.equipments,label,equipments
-message.equipments,value,"[{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}]"
-message.equipments[0],label,equipments[0]
-message.equipments[0],value,"{'equipmentId': 'JSVU12453627', 'equipmentType': {'code': 'CN', 'description': None}, 'wagonId': None, 'codeITU': '40', 'grossWeight': 42000, 'isEmpty': True, 'sealIndicator': 'Precxx3234', 'goods': [{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}], 'damageRemarks': 'string', 'city': {'name': None, 'cityLoCode': 'ES MAD'}, 'country': None, 'dangerousEquipment': False, 'dangerousEquipmentDescription': None}"
-message.equipments[0].equipmentId,label,equipmentId
-message.equipments[0].equipmentId,value,JSVU12453627
-message.equipments[0].equipmentType,label,equipmentType
-message.equipments[0].equipmentType,value,"{'code': 'CN', 'description': None}"
-message.equipments[0].equipmentType.code,label,code
-message.equipments[0].equipmentType.code,value,CN
-message.equipments[0].codeITU,label,codeITU
-message.equipments[0].codeITU,value,40
-message.equipments[0].grossWeight,label,grossWeight
-message.equipments[0].grossWeight,value,42000
-message.equipments[0].isEmpty,label,isEmpty
-message.equipments[0].isEmpty,value,True
-message.equipments[0].sealIndicator,label,sealIndicator
-message.equipments[0].sealIndicator,value,Precxx3234
-message.equipments[0].goods,label,goods
-message.equipments[0].goods,value,"[{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}]"
-message.equipments[0].goods[0],label,goods[0]
-message.equipments[0].goods[0],value,"{'package': {'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}, 'goodTypeCode': 'tires', 'goodDescription': 'finished rubber tires', 'cargoType': 'Pallets', 'idNumberList': ['21321'], 'goodWeight': 0.0, 'goodGrossMass': 23000.0, 'goodSize': 12, 'temperature': None, 'dangerousGoods': False, 'dangerousGoodsDescription': None, 'damageRemarks': None}"
-message.equipments[0].goods[0].package,label,package
-message.equipments[0].goods[0].package,value,"{'numberOfPackages': 26, 'shippingMark': 'bridgestones', 'packagingType': None}"
-message.equipments[0].goods[0].package.numberOfPackages,label,numberOfPackages
-message.equipments[0].goods[0].package.numberOfPackages,value,26
-message.equipments[0].goods[0].package.shippingMark,label,shippingMark
-message.equipments[0].goods[0].package.shippingMark,value,bridgestones
-message.equipments[0].goods[0].goodTypeCode,label,goodTypeCode
-message.equipments[0].goods[0].goodTypeCode,value,tires
-message.equipments[0].goods[0].goodDescription,label,goodDescription
-message.equipments[0].goods[0].goodDescription,value,finished rubber tires
-message.equipments[0].goods[0].cargoType,label,cargoType
-message.equipments[0].goods[0].cargoType,value,Pallets
-message.equipments[0].goods[0].idNumberList,label,idNumberList
-message.equipments[0].goods[0].idNumberList,value,['21321']
-message.equipments[0].goods[0].idNumberList[0],label,idNumberList[0]
-message.equipments[0].goods[0].idNumberList[0],value,21321
-message.equipments[0].goods[0].goodWeight,label,goodWeight
-message.equipments[0].goods[0].goodWeight,value,0.0
-message.equipments[0].goods[0].goodGrossMass,label,goodGrossMass
-message.equipments[0].goods[0].goodGrossMass,value,23000.0
-message.equipments[0].goods[0].goodSize,label,goodSize
-message.equipments[0].goods[0].goodSize,value,12
-message.equipments[0].goods[0].dangerousGoods,label,dangerousGoods
-message.equipments[0].goods[0].dangerousGoods,value,False
-message.equipments[0].damageRemarks,label,damageRemarks
-message.equipments[0].damageRemarks,value,string
-message.equipments[0].city,label,city
-message.equipments[0].city,value,"{'name': None, 'cityLoCode': 'ES MAD'}"
-message.equipments[0].city.cityLoCode,label,cityLoCode
-message.equipments[0].city.cityLoCode,value,ES MAD
-message.equipments[0].dangerousEquipment,label,dangerousEquipment
-message.equipments[0].dangerousEquipment,value,False
-message.documents,label,documents
-message.documents,value,[]
-message.externalReferences,label,externalReferences
-message.externalReferences,value,"[{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}]"
-message.externalReferences[0],label,externalReferences[0]
-message.externalReferences[0],value,"{'type': 'shipment_reference', 'id': 'BL112233', 'endPoint': None}"
-message.externalReferences[0].type,label,type
-message.externalReferences[0].type,value,shipment_reference
-message.externalReferences[0].id,label,id
-message.externalReferences[0].id,value,BL112233
-operationType,label,operationType
-operationType,value,CREATE
+message,value,"{'shipment': {'shipper': 'Asian Export Food', 'loadingLocation': {'plaats': 'Kampen', 'land': 'Nederland'}, 'loadingDate': '17-01-2025'}, 'goods': [{'kenmerk': '00803055558', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 23, 'unloadLocation': {'straat': 'Masvagen 2', 'naam': 'AX Utveckling AB', 'postcode': '22100', 'plaats': 'MARIEHAMN', 'land': 'FIN'}}, {'kenmerk': '00803055544', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 16, 'unloadLocation': {'straat': 'Hämeenkatu 7', 'naam': 'Nurmi Dao Oy', 'postcode': '20500', 'plaats': 'TURKU', 'land': 'FIN'}}, {'kenmerk': '0080305561', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 1, 'unloadLocation': {'straat': 'Kuunsade 10b 43', 'naam': 'Golden Food Oy', 'postcode': '02210', 'plaats': 'HELSINKI', 'land': 'FIN'}}, {'kenmerk': '00803055599', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 50, 'unloadLocation': {'straat': 'Gatan 5', 'naam': 'ABC Logistics', 'postcode': '11450', 'plaats': 'STOCKHOLM', 'land': 'SWE'}}, {'kenmerk': '0080305560', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 12, 'unloadLocation': {'straat': 'Storgata 15', 'naam': 'Nordic Foods', 'postcode': '0161', 'plaats': 'OSLO', 'land': 'NOR'}}, {'kenmerk': '0080305562', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 25, 'unloadLocation': {'straat': 'Skolgatan 12', 'naam': 'Food Service AB', 'postcode': '11850', 'plaats': 'GOTHENBURG', 'land': 'SWE'}}, {'kenmerk': '0080305563', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 10, 'unloadLocation': {'straat': 'Bryggen 3', 'naam': 'North Sea Logistics', 'postcode': '5003', 'plaats': 'BERGEN', 'land': 'NOR'}}, {'kenmerk': '0080305564', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 1, 'noOfColli': 8, 'unloadLocation': {'straat': 'Tallinn Road 8', 'naam': 'Baltic Foods', 'postcode': '10111', 'plaats': 'TALLINN', 'land': 'EST'}}, {'kenmerk': '0080305565', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 18, 'unloadLocation': {'straat': 'Main Street 22', 'naam': 'Global Goods Inc', 'postcode': '8000', 'plaats': 'AARHUS', 'land': 'DNK'}}, {'kenmerk': '0080305566', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 15, 'unloadLocation': {'straat': 'Food Street 45', 'naam': 'ScandiFoods AS', 'postcode': '3010', 'plaats': 'DRAMMEN', 'land': 'NOR'}}]}"
+message.shipment,label,shipment
+message.shipment,value,"{'shipper': 'Asian Export Food', 'loadingLocation': {'plaats': 'Kampen', 'land': 'Nederland'}, 'loadingDate': '17-01-2025'}"
+message.shipment.shipper,label,shipper
+message.shipment.shipper,value,Asian Export Food
+message.shipment.loadingLocation,label,loadingLocation
+message.shipment.loadingLocation,value,"{'plaats': 'Kampen', 'land': 'Nederland'}"
+message.shipment.loadingLocation.plaats,label,plaats
+message.shipment.loadingLocation.plaats,value,Kampen
+message.shipment.loadingLocation.land,label,land
+message.shipment.loadingLocation.land,value,Nederland
+message.shipment.loadingDate,label,loadingDate
+message.shipment.loadingDate,value,17-01-2025
+message.goods,label,goods
+message.goods,value,"[{'kenmerk': '00803055558', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 23, 'unloadLocation': {'straat': 'Masvagen 2', 'naam': 'AX Utveckling AB', 'postcode': '22100', 'plaats': 'MARIEHAMN', 'land': 'FIN'}}, {'kenmerk': '00803055544', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 16, 'unloadLocation': {'straat': 'Hämeenkatu 7', 'naam': 'Nurmi Dao Oy', 'postcode': '20500', 'plaats': 'TURKU', 'land': 'FIN'}}, {'kenmerk': '0080305561', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 1, 'unloadLocation': {'straat': 'Kuunsade 10b 43', 'naam': 'Golden Food Oy', 'postcode': '02210', 'plaats': 'HELSINKI', 'land': 'FIN'}}, {'kenmerk': '00803055599', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 50, 'unloadLocation': {'straat': 'Gatan 5', 'naam': 'ABC Logistics', 'postcode': '11450', 'plaats': 'STOCKHOLM', 'land': 'SWE'}}, {'kenmerk': '0080305560', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 12, 'unloadLocation': {'straat': 'Storgata 15', 'naam': 'Nordic Foods', 'postcode': '0161', 'plaats': 'OSLO', 'land': 'NOR'}}, {'kenmerk': '0080305562', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 25, 'unloadLocation': {'straat': 'Skolgatan 12', 'naam': 'Food Service AB', 'postcode': '11850', 'plaats': 'GOTHENBURG', 'land': 'SWE'}}, {'kenmerk': '0080305563', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 10, 'unloadLocation': {'straat': 'Bryggen 3', 'naam': 'North Sea Logistics', 'postcode': '5003', 'plaats': 'BERGEN', 'land': 'NOR'}}, {'kenmerk': '0080305564', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 1, 'noOfColli': 8, 'unloadLocation': {'straat': 'Tallinn Road 8', 'naam': 'Baltic Foods', 'postcode': '10111', 'plaats': 'TALLINN', 'land': 'EST'}}, {'kenmerk': '0080305565', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 18, 'unloadLocation': {'straat': 'Main Street 22', 'naam': 'Global Goods Inc', 'postcode': '8000', 'plaats': 'AARHUS', 'land': 'DNK'}}, {'kenmerk': '0080305566', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 15, 'unloadLocation': {'straat': 'Food Street 45', 'naam': 'ScandiFoods AS', 'postcode': '3010', 'plaats': 'DRAMMEN', 'land': 'NOR'}}]"
+message.goods[0],label,goods[0]
+message.goods[0],value,"{'kenmerk': '00803055558', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 23, 'unloadLocation': {'straat': 'Masvagen 2', 'naam': 'AX Utveckling AB', 'postcode': '22100', 'plaats': 'MARIEHAMN', 'land': 'FIN'}}"
+message.goods[0].kenmerk,label,kenmerk
+message.goods[0].kenmerk,value,00803055558
+message.goods[0].actie,label,actie
+message.goods[0].actie,value,Lossen
+message.goods[0].euroDV,label,euroDV
+message.goods[0].euroDV,value,1
+message.goods[0].blokDV,label,blokDV
+message.goods[0].blokDV,value,1
+message.goods[0].noOfColli,label,noOfColli
+message.goods[0].noOfColli,value,23
+message.goods[0].unloadLocation,label,unloadLocation
+message.goods[0].unloadLocation,value,"{'straat': 'Masvagen 2', 'naam': 'AX Utveckling AB', 'postcode': '22100', 'plaats': 'MARIEHAMN', 'land': 'FIN'}"
+message.goods[0].unloadLocation.straat,label,straat
+message.goods[0].unloadLocation.straat,value,Masvagen 2
+message.goods[0].unloadLocation.naam,label,naam
+message.goods[0].unloadLocation.naam,value,AX Utveckling AB
+message.goods[0].unloadLocation.postcode,label,postcode
+message.goods[0].unloadLocation.postcode,value,22100
+message.goods[0].unloadLocation.plaats,label,plaats
+message.goods[0].unloadLocation.plaats,value,MARIEHAMN
+message.goods[0].unloadLocation.land,label,land
+message.goods[0].unloadLocation.land,value,FIN
+message.goods[1],label,goods[1]
+message.goods[1],value,"{'kenmerk': '00803055544', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 16, 'unloadLocation': {'straat': 'Hämeenkatu 7', 'naam': 'Nurmi Dao Oy', 'postcode': '20500', 'plaats': 'TURKU', 'land': 'FIN'}}"
+message.goods[1].kenmerk,label,kenmerk
+message.goods[1].kenmerk,value,00803055544
+message.goods[1].actie,label,actie
+message.goods[1].actie,value,Lossen
+message.goods[1].euroDV,label,euroDV
+message.goods[1].euroDV,value,1
+message.goods[1].blokDV,label,blokDV
+message.goods[1].blokDV,value,1
+message.goods[1].noOfColli,label,noOfColli
+message.goods[1].noOfColli,value,16
+message.goods[1].unloadLocation,label,unloadLocation
+message.goods[1].unloadLocation,value,"{'straat': 'Hämeenkatu 7', 'naam': 'Nurmi Dao Oy', 'postcode': '20500', 'plaats': 'TURKU', 'land': 'FIN'}"
+message.goods[1].unloadLocation.straat,label,straat
+message.goods[1].unloadLocation.straat,value,Hämeenkatu 7
+message.goods[1].unloadLocation.naam,label,naam
+message.goods[1].unloadLocation.naam,value,Nurmi Dao Oy
+message.goods[1].unloadLocation.postcode,label,postcode
+message.goods[1].unloadLocation.postcode,value,20500
+message.goods[1].unloadLocation.plaats,label,plaats
+message.goods[1].unloadLocation.plaats,value,TURKU
+message.goods[1].unloadLocation.land,label,land
+message.goods[1].unloadLocation.land,value,FIN
+message.goods[2],label,goods[2]
+message.goods[2],value,"{'kenmerk': '0080305561', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 1, 'noOfColli': 1, 'unloadLocation': {'straat': 'Kuunsade 10b 43', 'naam': 'Golden Food Oy', 'postcode': '02210', 'plaats': 'HELSINKI', 'land': 'FIN'}}"
+message.goods[2].kenmerk,label,kenmerk
+message.goods[2].kenmerk,value,0080305561
+message.goods[2].actie,label,actie
+message.goods[2].actie,value,Lossen
+message.goods[2].euroDV,label,euroDV
+message.goods[2].euroDV,value,1
+message.goods[2].blokDV,label,blokDV
+message.goods[2].blokDV,value,1
+message.goods[2].noOfColli,label,noOfColli
+message.goods[2].noOfColli,value,1
+message.goods[2].unloadLocation,label,unloadLocation
+message.goods[2].unloadLocation,value,"{'straat': 'Kuunsade 10b 43', 'naam': 'Golden Food Oy', 'postcode': '02210', 'plaats': 'HELSINKI', 'land': 'FIN'}"
+message.goods[2].unloadLocation.straat,label,straat
+message.goods[2].unloadLocation.straat,value,Kuunsade 10b 43
+message.goods[2].unloadLocation.naam,label,naam
+message.goods[2].unloadLocation.naam,value,Golden Food Oy
+message.goods[2].unloadLocation.postcode,label,postcode
+message.goods[2].unloadLocation.postcode,value,02210
+message.goods[2].unloadLocation.plaats,label,plaats
+message.goods[2].unloadLocation.plaats,value,HELSINKI
+message.goods[2].unloadLocation.land,label,land
+message.goods[2].unloadLocation.land,value,FIN
+message.goods[3],label,goods[3]
+message.goods[3],value,"{'kenmerk': '00803055599', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 50, 'unloadLocation': {'straat': 'Gatan 5', 'naam': 'ABC Logistics', 'postcode': '11450', 'plaats': 'STOCKHOLM', 'land': 'SWE'}}"
+message.goods[3].kenmerk,label,kenmerk
+message.goods[3].kenmerk,value,00803055599
+message.goods[3].actie,label,actie
+message.goods[3].actie,value,Lossen
+message.goods[3].euroDV,label,euroDV
+message.goods[3].euroDV,value,2
+message.goods[3].blokDV,label,blokDV
+message.goods[3].blokDV,value,3
+message.goods[3].noOfColli,label,noOfColli
+message.goods[3].noOfColli,value,50
+message.goods[3].unloadLocation,label,unloadLocation
+message.goods[3].unloadLocation,value,"{'straat': 'Gatan 5', 'naam': 'ABC Logistics', 'postcode': '11450', 'plaats': 'STOCKHOLM', 'land': 'SWE'}"
+message.goods[3].unloadLocation.straat,label,straat
+message.goods[3].unloadLocation.straat,value,Gatan 5
+message.goods[3].unloadLocation.naam,label,naam
+message.goods[3].unloadLocation.naam,value,ABC Logistics
+message.goods[3].unloadLocation.postcode,label,postcode
+message.goods[3].unloadLocation.postcode,value,11450
+message.goods[3].unloadLocation.plaats,label,plaats
+message.goods[3].unloadLocation.plaats,value,STOCKHOLM
+message.goods[3].unloadLocation.land,label,land
+message.goods[3].unloadLocation.land,value,SWE
+message.goods[4],label,goods[4]
+message.goods[4],value,"{'kenmerk': '0080305560', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 12, 'unloadLocation': {'straat': 'Storgata 15', 'naam': 'Nordic Foods', 'postcode': '0161', 'plaats': 'OSLO', 'land': 'NOR'}}"
+message.goods[4].kenmerk,label,kenmerk
+message.goods[4].kenmerk,value,0080305560
+message.goods[4].actie,label,actie
+message.goods[4].actie,value,Lossen
+message.goods[4].euroDV,label,euroDV
+message.goods[4].euroDV,value,1
+message.goods[4].blokDV,label,blokDV
+message.goods[4].blokDV,value,2
+message.goods[4].noOfColli,label,noOfColli
+message.goods[4].noOfColli,value,12
+message.goods[4].unloadLocation,label,unloadLocation
+message.goods[4].unloadLocation,value,"{'straat': 'Storgata 15', 'naam': 'Nordic Foods', 'postcode': '0161', 'plaats': 'OSLO', 'land': 'NOR'}"
+message.goods[4].unloadLocation.straat,label,straat
+message.goods[4].unloadLocation.straat,value,Storgata 15
+message.goods[4].unloadLocation.naam,label,naam
+message.goods[4].unloadLocation.naam,value,Nordic Foods
+message.goods[4].unloadLocation.postcode,label,postcode
+message.goods[4].unloadLocation.postcode,value,0161
+message.goods[4].unloadLocation.plaats,label,plaats
+message.goods[4].unloadLocation.plaats,value,OSLO
+message.goods[4].unloadLocation.land,label,land
+message.goods[4].unloadLocation.land,value,NOR
+message.goods[5],label,goods[5]
+message.goods[5],value,"{'kenmerk': '0080305562', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 25, 'unloadLocation': {'straat': 'Skolgatan 12', 'naam': 'Food Service AB', 'postcode': '11850', 'plaats': 'GOTHENBURG', 'land': 'SWE'}}"
+message.goods[5].kenmerk,label,kenmerk
+message.goods[5].kenmerk,value,0080305562
+message.goods[5].actie,label,actie
+message.goods[5].actie,value,Lossen
+message.goods[5].euroDV,label,euroDV
+message.goods[5].euroDV,value,2
+message.goods[5].blokDV,label,blokDV
+message.goods[5].blokDV,value,3
+message.goods[5].noOfColli,label,noOfColli
+message.goods[5].noOfColli,value,25
+message.goods[5].unloadLocation,label,unloadLocation
+message.goods[5].unloadLocation,value,"{'straat': 'Skolgatan 12', 'naam': 'Food Service AB', 'postcode': '11850', 'plaats': 'GOTHENBURG', 'land': 'SWE'}"
+message.goods[5].unloadLocation.straat,label,straat
+message.goods[5].unloadLocation.straat,value,Skolgatan 12
+message.goods[5].unloadLocation.naam,label,naam
+message.goods[5].unloadLocation.naam,value,Food Service AB
+message.goods[5].unloadLocation.postcode,label,postcode
+message.goods[5].unloadLocation.postcode,value,11850
+message.goods[5].unloadLocation.plaats,label,plaats
+message.goods[5].unloadLocation.plaats,value,GOTHENBURG
+message.goods[5].unloadLocation.land,label,land
+message.goods[5].unloadLocation.land,value,SWE
+message.goods[6],label,goods[6]
+message.goods[6],value,"{'kenmerk': '0080305563', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 10, 'unloadLocation': {'straat': 'Bryggen 3', 'naam': 'North Sea Logistics', 'postcode': '5003', 'plaats': 'BERGEN', 'land': 'NOR'}}"
+message.goods[6].kenmerk,label,kenmerk
+message.goods[6].kenmerk,value,0080305563
+message.goods[6].actie,label,actie
+message.goods[6].actie,value,Lossen
+message.goods[6].euroDV,label,euroDV
+message.goods[6].euroDV,value,1
+message.goods[6].blokDV,label,blokDV
+message.goods[6].blokDV,value,2
+message.goods[6].noOfColli,label,noOfColli
+message.goods[6].noOfColli,value,10
+message.goods[6].unloadLocation,label,unloadLocation
+message.goods[6].unloadLocation,value,"{'straat': 'Bryggen 3', 'naam': 'North Sea Logistics', 'postcode': '5003', 'plaats': 'BERGEN', 'land': 'NOR'}"
+message.goods[6].unloadLocation.straat,label,straat
+message.goods[6].unloadLocation.straat,value,Bryggen 3
+message.goods[6].unloadLocation.naam,label,naam
+message.goods[6].unloadLocation.naam,value,North Sea Logistics
+message.goods[6].unloadLocation.postcode,label,postcode
+message.goods[6].unloadLocation.postcode,value,5003
+message.goods[6].unloadLocation.plaats,label,plaats
+message.goods[6].unloadLocation.plaats,value,BERGEN
+message.goods[6].unloadLocation.land,label,land
+message.goods[6].unloadLocation.land,value,NOR
+message.goods[7],label,goods[7]
+message.goods[7],value,"{'kenmerk': '0080305564', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 1, 'noOfColli': 8, 'unloadLocation': {'straat': 'Tallinn Road 8', 'naam': 'Baltic Foods', 'postcode': '10111', 'plaats': 'TALLINN', 'land': 'EST'}}"
+message.goods[7].kenmerk,label,kenmerk
+message.goods[7].kenmerk,value,0080305564
+message.goods[7].actie,label,actie
+message.goods[7].actie,value,Lossen
+message.goods[7].euroDV,label,euroDV
+message.goods[7].euroDV,value,2
+message.goods[7].blokDV,label,blokDV
+message.goods[7].blokDV,value,1
+message.goods[7].noOfColli,label,noOfColli
+message.goods[7].noOfColli,value,8
+message.goods[7].unloadLocation,label,unloadLocation
+message.goods[7].unloadLocation,value,"{'straat': 'Tallinn Road 8', 'naam': 'Baltic Foods', 'postcode': '10111', 'plaats': 'TALLINN', 'land': 'EST'}"
+message.goods[7].unloadLocation.straat,label,straat
+message.goods[7].unloadLocation.straat,value,Tallinn Road 8
+message.goods[7].unloadLocation.naam,label,naam
+message.goods[7].unloadLocation.naam,value,Baltic Foods
+message.goods[7].unloadLocation.postcode,label,postcode
+message.goods[7].unloadLocation.postcode,value,10111
+message.goods[7].unloadLocation.plaats,label,plaats
+message.goods[7].unloadLocation.plaats,value,TALLINN
+message.goods[7].unloadLocation.land,label,land
+message.goods[7].unloadLocation.land,value,EST
+message.goods[8],label,goods[8]
+message.goods[8],value,"{'kenmerk': '0080305565', 'actie': 'Lossen', 'euroDV': 2, 'blokDV': 3, 'noOfColli': 18, 'unloadLocation': {'straat': 'Main Street 22', 'naam': 'Global Goods Inc', 'postcode': '8000', 'plaats': 'AARHUS', 'land': 'DNK'}}"
+message.goods[8].kenmerk,label,kenmerk
+message.goods[8].kenmerk,value,0080305565
+message.goods[8].actie,label,actie
+message.goods[8].actie,value,Lossen
+message.goods[8].euroDV,label,euroDV
+message.goods[8].euroDV,value,2
+message.goods[8].blokDV,label,blokDV
+message.goods[8].blokDV,value,3
+message.goods[8].noOfColli,label,noOfColli
+message.goods[8].noOfColli,value,18
+message.goods[8].unloadLocation,label,unloadLocation
+message.goods[8].unloadLocation,value,"{'straat': 'Main Street 22', 'naam': 'Global Goods Inc', 'postcode': '8000', 'plaats': 'AARHUS', 'land': 'DNK'}"
+message.goods[8].unloadLocation.straat,label,straat
+message.goods[8].unloadLocation.straat,value,Main Street 22
+message.goods[8].unloadLocation.naam,label,naam
+message.goods[8].unloadLocation.naam,value,Global Goods Inc
+message.goods[8].unloadLocation.postcode,label,postcode
+message.goods[8].unloadLocation.postcode,value,8000
+message.goods[8].unloadLocation.plaats,label,plaats
+message.goods[8].unloadLocation.plaats,value,AARHUS
+message.goods[8].unloadLocation.land,label,land
+message.goods[8].unloadLocation.land,value,DNK
+message.goods[9],label,goods[9]
+message.goods[9],value,"{'kenmerk': '0080305566', 'actie': 'Lossen', 'euroDV': 1, 'blokDV': 2, 'noOfColli': 15, 'unloadLocation': {'straat': 'Food Street 45', 'naam': 'ScandiFoods AS', 'postcode': '3010', 'plaats': 'DRAMMEN', 'land': 'NOR'}}"
+message.goods[9].kenmerk,label,kenmerk
+message.goods[9].kenmerk,value,0080305566
+message.goods[9].actie,label,actie
+message.goods[9].actie,value,Lossen
+message.goods[9].euroDV,label,euroDV
+message.goods[9].euroDV,value,1
+message.goods[9].blokDV,label,blokDV
+message.goods[9].blokDV,value,2
+message.goods[9].noOfColli,label,noOfColli
+message.goods[9].noOfColli,value,15
+message.goods[9].unloadLocation,label,unloadLocation
+message.goods[9].unloadLocation,value,"{'straat': 'Food Street 45', 'naam': 'ScandiFoods AS', 'postcode': '3010', 'plaats': 'DRAMMEN', 'land': 'NOR'}"
+message.goods[9].unloadLocation.straat,label,straat
+message.goods[9].unloadLocation.straat,value,Food Street 45
+message.goods[9].unloadLocation.naam,label,naam
+message.goods[9].unloadLocation.naam,value,ScandiFoods AS
+message.goods[9].unloadLocation.postcode,label,postcode
+message.goods[9].unloadLocation.postcode,value,3010
+message.goods[9].unloadLocation.plaats,label,plaats
+message.goods[9].unloadLocation.plaats,value,DRAMMEN
+message.goods[9].unloadLocation.land,label,land
+message.goods[9].unloadLocation.land,value,NOR
